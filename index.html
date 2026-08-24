@@ -3,757 +3,1675 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111111">
+
 <title>Meu Financeiro</title>
 
 <style>
+
 *{
-    box-sizing:border-box;
+box-sizing:border-box;
 }
 
 body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:#111;
-    color:white;
+margin:0;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+background:#111;
+color:#fff;
+padding-bottom:90px;
 }
 
 header{
-    background:linear-gradient(135deg,#111,#292929);
-    padding:22px 18px;
-    text-align:center;
-    border-bottom:2px solid #43b649;
+background:linear-gradient(135deg,#111,#292929);
+padding:28px 18px 25px;
+text-align:center;
+border-bottom:3px solid #43c94b;
 }
 
 header h1{
-    margin:0;
-    font-size:28px;
+margin:0;
+font-size:34px;
 }
 
 header p{
-    margin:6px 0 0;
-    color:#aaa;
+margin:6px 0 0;
+font-size:18px;
+color:#aaa;
 }
 
-.menu{
-    display:flex;
-    overflow-x:auto;
-    gap:8px;
-    padding:12px;
-    background:#1b1b1b;
+nav{
+display:flex;
+gap:10px;
+overflow-x:auto;
+padding:16px;
+background:#181818;
 }
 
-.menu button{
-    border:0;
-    background:#303030;
-    color:white;
-    padding:12px 18px;
-    border-radius:12px;
-    font-size:15px;
-    white-space:nowrap;
+nav button{
+min-width:150px;
+padding:16px;
+border:0;
+border-radius:18px;
+background:#303030;
+color:#fff;
+font-size:17px;
 }
 
-.menu button.ativo{
-    background:#43b649;
-    color:white;
-    font-weight:bold;
+nav button.active{
+background:#43bd49;
 }
 
 .container{
-    padding:15px;
-    max-width:900px;
-    margin:auto;
+max-width:900px;
+margin:auto;
+padding:18px;
 }
 
-.aba{
-    display:none;
+.section{
+display:none;
 }
 
-.aba.ativa{
-    display:block;
+.section.active{
+display:block;
 }
 
-.cards{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-    margin-bottom:18px;
+.title{
+font-size:28px;
+font-weight:900;
+margin:10px 0 20px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:14px;
 }
 
 .card{
-    background:#202020;
-    border-radius:15px;
-    padding:16px;
-    border:1px solid #333;
+background:#202020;
+border:1px solid #353535;
+border-radius:20px;
+padding:20px;
+margin-bottom:15px;
 }
 
-.card span{
-    display:block;
-    color:#aaa;
-    font-size:13px;
-    margin-bottom:8px;
+.kpi small{
+color:#aaa;
+font-size:15px;
 }
 
-.card strong{
-    font-size:21px;
+.kpi strong{
+display:block;
+font-size:25px;
+margin-top:8px;
 }
 
-.verde{
-    color:#55e65b;
+.green{color:#45d953;}
+.red{color:#ff5555;}
+.blue{color:#45a8ff;}
+.yellow{color:#ffd43b;}
+
+button{
+border:0;
+border-radius:14px;
+padding:14px;
+font-size:16px;
+font-weight:700;
+cursor:pointer;
 }
 
-.vermelho{
-    color:#ff5555;
+.primary{
+background:#43bd49;
+color:white;
 }
 
-.azul{
-    color:#55aaff;
+.secondary{
+background:#333;
+color:white;
 }
 
-.titulo{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin:20px 0 12px;
+.danger{
+background:#5b2020;
+color:#ff7777;
 }
 
-.titulo h2{
-    margin:0;
-    font-size:21px;
+.form-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
 }
 
-.btn{
-    background:#43b649;
-    color:white;
-    border:0;
-    padding:11px 15px;
-    border-radius:10px;
-    font-weight:bold;
+label{
+display:block;
+font-size:13px;
+color:#aaa;
+margin-bottom:5px;
 }
 
-.conta{
-    background:#202020;
-    border-radius:14px;
-    margin-bottom:10px;
-    padding:14px;
-    border-left:5px solid #777;
+input,select{
+width:100%;
+padding:14px;
+border-radius:12px;
+border:1px solid #444;
+background:#151515;
+color:#fff;
+font-size:16px;
 }
 
-.conta.paga{
-    border-left-color:#43b649;
+.full{
+grid-column:1/-1;
 }
 
-.conta.aberta{
-    border-left-color:#ff4444;
+.row{
+display:flex;
+justify-content:space-between;
+gap:10px;
+align-items:center;
+padding:15px 0;
+border-bottom:1px solid #333;
 }
 
-.linha{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
+.desc{
+font-weight:800;
+font-size:16px;
 }
 
-.descricao{
-    font-size:17px;
-    font-weight:bold;
+.meta{
+color:#999;
+font-size:13px;
+margin-top:5px;
 }
 
-.vencimento{
-    color:#aaa;
-    font-size:13px;
-    margin-top:6px;
+.amount{
+font-weight:900;
+white-space:nowrap;
 }
 
-.valor{
-    font-size:19px;
-    color:#55e65b;
-    font-weight:bold;
-    white-space:nowrap;
+.badge{
+display:inline-block;
+margin-top:5px;
+padding:5px 8px;
+border-radius:10px;
+font-size:11px;
+background:#333;
 }
 
-.status{
-    margin-top:12px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+.actions{
+display:flex;
+gap:6px;
+margin-top:10px;
 }
 
-.status label{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    color:#ddd;
+.actions button{
+padding:8px;
+font-size:13px;
 }
 
-.status input{
-    width:22px;
-    height:22px;
+.progress{
+height:14px;
+background:#333;
+border-radius:20px;
+overflow:hidden;
+margin-top:10px;
 }
 
-.excluir{
-    background:#7d2222;
-    color:white;
-    border:0;
-    padding:8px 12px;
-    border-radius:8px;
+.progress div{
+height:100%;
+background:#43bd49;
 }
 
-.formulario{
-    background:#202020;
-    padding:16px;
-    border-radius:15px;
-    margin-top:15px;
+.bar{
+height:25px;
+background:#333;
+border-radius:20px;
+overflow:hidden;
+margin-top:10px;
 }
 
-.formulario input{
-    width:100%;
-    padding:13px;
-    margin-bottom:10px;
-    border-radius:9px;
-    border:1px solid #444;
-    background:#111;
-    color:white;
-    font-size:16px;
+.bar div{
+height:100%;
+background:#43bd49;
 }
 
-.formulario button{
-    width:100%;
-    padding:14px;
-    border:0;
-    border-radius:10px;
-    background:#43b649;
-    color:white;
-    font-size:16px;
-    font-weight:bold;
+.empty{
+text-align:center;
+color:#777;
+padding:30px 10px;
 }
 
-.filtro{
-    display:flex;
-    gap:8px;
-    margin-bottom:15px;
+.modal{
+position:fixed;
+inset:0;
+background:#000c;
+display:none;
+align-items:flex-end;
+z-index:100;
 }
 
-.filtro button{
-    flex:1;
-    padding:10px;
-    border:0;
-    border-radius:9px;
-    background:#333;
-    color:white;
+.modal.show{
+display:flex;
 }
 
-.info{
-    background:#202020;
-    padding:15px;
-    border-radius:12px;
-    color:#ccc;
-    line-height:1.5;
+.sheet{
+background:#202020;
+width:100%;
+border-radius:25px 25px 0 0;
+padding:20px;
+max-height:94vh;
+overflow:auto;
+}
+
+.sheet h2{
+margin-top:0;
+}
+
+.two{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+}
+
+.close{
+background:#333;
+color:#fff;
+}
+
+canvas{
+width:100%;
+height:250px;
+}
+
+.bottom{
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+background:#181818;
+border-top:1px solid #333;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+z-index:50;
+}
+
+.bottom button{
+background:transparent;
+color:#fff;
+border-radius:0;
+font-size:12px;
 }
 
 @media(max-width:600px){
-    .cards{
-        grid-template-columns:repeat(2,1fr);
-    }
 
-    .card strong{
-        font-size:17px;
-    }
+.grid{
+grid-template-columns:1fr 1fr;
 }
+
+.form-grid{
+grid-template-columns:1fr;
+}
+
+.two{
+grid-template-columns:1fr;
+}
+
+header h1{
+font-size:30px;
+}
+
+}
+
 </style>
 </head>
 
 <body>
 
 <header>
-    <h1>💰 Meu Financeiro</h1>
-    <p>Controle financeiro pessoal</p>
+
+<h1>💰 Meu Financeiro</h1>
+
+<p>Controle financeiro pessoal</p>
+
 </header>
 
-<div class="menu">
-    <button class="ativo" onclick="abrirAba('inicio',this)">🏠 Início</button>
-    <button onclick="abrirAba('contas',this)">📋 Contas</button>
-    <button onclick="abrirAba('receitas',this)">💰 Receitas</button>
-    <button onclick="abrirAba('despesas',this)">💸 Despesas</button>
-</div>
+<nav>
+
+<button class="active" onclick="abrir('inicio',this)">🏠 Início</button>
+
+<button onclick="abrir('contas',this)">📋 Contas</button>
+
+<button onclick="abrir('receitas',this)">💰 Receitas</button>
+
+<button onclick="abrir('despesas',this)">💸 Despesas</button>
+
+<button onclick="abrir('relatorios',this)">📊 Relatórios</button>
+
+</nav>
+
 
 <div class="container">
 
+
 <!-- INÍCIO -->
-<section id="inicio" class="aba ativa">
 
-    <div class="titulo">
-        <h2>Resumo financeiro</h2>
-    </div>
+<section id="inicio" class="section active">
 
-    <div class="cards">
+<div class="title">Resumo financeiro</div>
 
-        <div class="card">
-            <span>Total de contas</span>
-            <strong id="totalContas">R$ 0,00</strong>
-        </div>
+<div class="grid">
 
-        <div class="card">
-            <span>Contas pagas</span>
-            <strong class="verde" id="totalPago">R$ 0,00</strong>
-        </div>
+<div class="card kpi">
+<small>Saldo</small>
+<strong id="saldo" class="blue">R$ 0,00</strong>
+</div>
 
-        <div class="card">
-            <span>Contas em aberto</span>
-            <strong class="vermelho" id="totalAberto">R$ 0,00</strong>
-        </div>
+<div class="card kpi">
+<small>Receitas</small>
+<strong id="receitas" class="green">R$ 0,00</strong>
+</div>
 
-        <div class="card">
-            <span>Quantidade de contas</span>
-            <strong class="azul" id="quantidadeContas">0</strong>
-        </div>
+<div class="card kpi">
+<small>Despesas</small>
+<strong id="despesas" class="red">R$ 0,00</strong>
+</div>
 
-    </div>
+<div class="card kpi">
+<small>Em aberto</small>
+<strong id="aberto" class="yellow">R$ 0,00</strong>
+</div>
 
-    <div class="info">
-        <strong>📌 Como usar:</strong><br><br>
-        Entre em <b>Contas</b> para controlar suas contas do mês.<br>
-        Marque a caixa quando uma conta for paga.<br>
-        O aplicativo atualiza automaticamente os valores pagos e em aberto.
-    </div>
+</div>
+
+
+<div class="card">
+
+<h2>📊 Movimento financeiro</h2>
+
+<canvas id="grafico"></canvas>
+
+</div>
+
+
+<div class="card">
+
+<h2>🎯 Meta financeira</h2>
+
+<label>Quanto você quer guardar?</label>
+
+<input id="meta" type="number" step="0.01">
+
+<div class="progress">
+
+<div id="metaBarra"></div>
+
+</div>
+
+<p id="metaTexto">R$ 0,00 de R$ 0,00</p>
+
+<button class="primary" onclick="salvarMeta()">
+Salvar meta
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h2>⚡ Ações rápidas</h2>
+
+<div class="two">
+
+<button class="primary" onclick="novoLancamento('Receita')">
+➕ Receita
+</button>
+
+<button class="primary" onclick="novoLancamento('Despesa')">
+➕ Despesa
+</button>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>📅 Próximas contas</h2>
+
+<div id="proximas"></div>
+
+</div>
 
 </section>
 
 
 <!-- CONTAS -->
-<section id="contas" class="aba">
 
-    <div class="titulo">
-        <h2>📋 Contas do mês</h2>
-        <button class="btn" onclick="mostrarFormulario()">+ Conta</button>
-    </div>
+<section id="contas" class="section">
 
-    <div class="filtro">
-        <button onclick="filtrar('todas')">Todas</button>
-        <button onclick="filtrar('abertas')">Não pagas</button>
-        <button onclick="filtrar('pagas')">Pagas</button>
-    </div>
+<div class="title">📋 Contas</div>
 
-    <div id="listaContas"></div>
+<div class="card">
 
-    <div id="formulario" class="formulario" style="display:none">
+<div class="two">
 
-        <h3>➕ Nova conta</h3>
+<input
+id="busca"
+placeholder="🔎 Buscar conta"
+oninput="renderizar()"
+>
 
-        <input id="novaDescricao"
-               type="text"
-               placeholder="Descrição da conta">
+<select id="filtro" onchange="renderizar()">
 
-        <input id="novoVencimento"
-               type="text"
-               placeholder="Vencimento - exemplo: 10/08">
+<option value="Todos">Todos</option>
 
-        <input id="novoValor"
-               type="number"
-               step="0.01"
-               placeholder="Valor">
+<option value="Pendente">Pendentes</option>
 
-        <button onclick="adicionarConta()">Adicionar conta</button>
+<option value="Pago">Pagas</option>
 
-    </div>
+<option value="Vencido">Vencidas</option>
+
+</select>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div id="lista"></div>
+
+</div>
 
 </section>
 
 
 <!-- RECEITAS -->
-<section id="receitas" class="aba">
 
-    <div class="titulo">
-        <h2>💰 Receitas</h2>
-    </div>
+<section id="receitas" class="section">
 
-    <div class="info">
-        <h3>Controle de receitas</h3>
-        <p>Essa área ficará preparada para adicionarmos seus salários, Uber, rendimentos e outras entradas.</p>
-    </div>
+<div class="title">💰 Receitas</div>
+
+<div class="card">
+
+<button class="primary" onclick="novoLancamento('Receita')">
+➕ Nova receita
+</button>
+
+</div>
+
+<div class="card">
+
+<div id="listaReceitas"></div>
+
+</div>
 
 </section>
 
 
 <!-- DESPESAS -->
-<section id="despesas" class="aba">
 
-    <div class="titulo">
-        <h2>💸 Despesas</h2>
-    </div>
+<section id="despesas" class="section">
 
-    <div class="info">
-        <h3>Controle de despesas</h3>
-        <p>Aqui vamos colocar posteriormente despesas do dia a dia, combustível, alimentação, compras e outras despesas.</p>
-    </div>
+<div class="title">💸 Despesas</div>
+
+<div class="card">
+
+<button class="primary" onclick="novoLancamento('Despesa')">
+➕ Nova despesa
+</button>
+
+</div>
+
+<div class="card">
+
+<div id="listaDespesas"></div>
+
+</div>
 
 </section>
+
+
+<!-- RELATÓRIOS -->
+
+<section id="relatorios" class="section">
+
+<div class="title">📊 Relatórios</div>
+
+<div class="card">
+
+<h2>Resumo</h2>
+
+<p>
+Total de lançamentos:
+<strong id="quantidade">0</strong>
+</p>
+
+<p>
+Contas pagas:
+<strong id="pagas">0</strong>
+</p>
+
+<p>
+Contas em aberto:
+<strong id="pendentes">0</strong>
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h2>💳 Gastos por cartão</h2>
+
+<div id="cartoes"></div>
+
+</div>
+
+
+<div class="card">
+
+<h2>🔢 Parcelas</h2>
+
+<div id="parcelas"></div>
+
+</div>
+
+
+<div class="card">
+
+<h2>💾 Backup</h2>
+
+<p style="color:#aaa">
+Salve seus dados antes de trocar de celular.
+</p>
+
+<div class="two">
+
+<button class="primary" onclick="exportar()">
+📥 Exportar
+</button>
+
+<button class="secondary" onclick="document.getElementById('arquivo').click()">
+📤 Importar
+</button>
+
+</div>
+
+<input
+id="arquivo"
+type="file"
+accept=".json"
+style="display:none"
+onchange="importar(event)"
+>
+
+</div>
+
+
+<div class="card">
+
+<button class="danger" onclick="limparTudo()">
+⚠️ Apagar todos os lançamentos
+</button>
+
+</div>
+
+</section>
+
+</div>
+
+
+<!-- MODAL -->
+
+<div id="modal" class="modal">
+
+<div class="sheet">
+
+<h2 id="tituloModal">➕ Novo lançamento</h2>
+
+<div class="form-grid">
+
+<div class="full">
+
+<label>Descrição</label>
+
+<input id="descricao" placeholder="Ex.: Mercado">
+
+</div>
+
+
+<div>
+
+<label>Tipo</label>
+
+<select id="tipo">
+
+<option>Despesa</option>
+<option>Receita</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>Categoria</label>
+
+<select id="categoria">
+
+<option>Casa</option>
+<option>Contas</option>
+<option>Cartão</option>
+<option>Moradia</option>
+<option>Família</option>
+<option>Telefone</option>
+<option>Internet</option>
+<option>Transporte</option>
+<option>Alimentação</option>
+<option>Saúde</option>
+<option>Lazer</option>
+<option>Compras</option>
+<option>Assinaturas</option>
+<option>Salário</option>
+<option>Outros</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>Valor</label>
+
+<input
+id="valor"
+type="number"
+step="0.01"
+inputmode="decimal"
+placeholder="0,00"
+>
+
+</div>
+
+
+<div>
+
+<label>Status</label>
+
+<select id="status">
+
+<option>Pendente</option>
+<option>Pago</option>
+<option>Vencido</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>Vencimento</label>
+
+<input id="vencimento" type="date">
+
+</div>
+
+
+<div>
+
+<label>Cartão</label>
+
+<input
+id="cartao"
+placeholder="Ex.: Nubank"
+>
+
+</div>
+
+
+<div>
+
+<label>Parcela</label>
+
+<input
+id="parcela"
+placeholder="Ex.: 5/12"
+>
+
+</div>
+
+
+<div class="full">
+
+<label>Observação</label>
+
+<input
+id="observacao"
+placeholder="Opcional"
+>
+
+</div>
+
+</div>
+
+
+<div class="two" style="margin-top:18px">
+
+<button class="close" onclick="fecharModal()">
+Cancelar
+</button>
+
+<button class="primary" onclick="salvarLancamento()">
+Salvar
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="bottom">
+
+<button onclick="abrir('inicio')">
+🏠<br>Início
+</button>
+
+<button onclick="novoLancamento()">
+➕<br>Lançar
+</button>
+
+<button onclick="abrir('contas')">
+📋<br>Contas
+</button>
+
+<button onclick="abrir('relatorios')">
+📊<br>Relatórios
+</button>
 
 </div>
 
 
 <script>
 
-let contas = JSON.parse(localStorage.getItem("minhasContas")) || [
 
-    {
-        descricao:"01 Enxoval Cozinha 03/12",
-        vencimento:"03/12",
-        valor:155,
-        paga:false
-    },
-
-    {
-        descricao:"08 Energia",
-        vencimento:"08",
-        valor:160,
-        paga:false
-    },
-
-    {
-        descricao:"10 Cartão Mercado Pago",
-        vencimento:"10",
-        valor:570,
-        paga:false
-    },
-
-    {
-        descricao:"10 Parcela Apartamento",
-        vencimento:"10",
-        valor:300,
-        paga:false
-    },
-
-    {
-        descricao:"10 Pensão Antonella",
-        vencimento:"10",
-        valor:700,
-        paga:false
-    },
-
-    {
-        descricao:"10 Cartão Nubank",
-        vencimento:"10",
-        valor:500,
-        paga:false
-    },
-
-    {
-        descricao:"15 Condomínio",
-        vencimento:"15",
-        valor:666,
-        paga:false
-    },
-
-    {
-        descricao:"20 Celular iPhone 2/21",
-        vencimento:"20",
-        valor:320,
-        paga:false
-    },
-
-    {
-        descricao:"20 Net",
-        vencimento:"20",
-        valor:185,
-        paga:false
-    },
-
-    {
-        descricao:"20 Cartão Porto Seguro",
-        vencimento:"20",
-        valor:400,
-        paga:false
-    },
-
-    {
-        descricao:"20 Cozinha 04/18 (Uber)",
-        vencimento:"20",
-        valor:666,
-        paga:false
-    },
-
-    {
-        descricao:"20 Cozinha ISA 05/12 (Uber)",
-        vencimento:"20",
-        valor:333,
-        paga:false
-    },
-
-    {
-        descricao:"20 Cozinha ISA 05/12 (Uber)",
-        vencimento:"20",
-        valor:333,
-        paga:false
-    },
-
-    {
-        descricao:"20 Moto 5/12 (Uber)",
-        vencimento:"20",
-        valor:570,
-        paga:false
-    }
-
-];
-
-let filtroAtual = "todas";
+let lancamentos =
+JSON.parse(localStorage.getItem("meuFinanceiro")) || [];
 
 
-function dinheiro(valor){
+let meta =
+Number(localStorage.getItem("meuFinanceiroMeta")) || 0;
 
-    return valor.toLocaleString("pt-BR",{
-        style:"currency",
-        currency:"BRL"
-    });
 
+let editando = null;
+
+
+const dinheiro = valor => {
+
+return Number(valor || 0).toLocaleString(
+"pt-BR",
+{
+style:"currency",
+currency:"BRL"
 }
+);
+
+};
 
 
 function salvar(){
 
-    localStorage.setItem(
-        "minhasContas",
-        JSON.stringify(contas)
-    );
+localStorage.setItem(
+"meuFinanceiro",
+JSON.stringify(lancamentos)
+);
 
 }
 
 
-function atualizarResumo(){
+function abrir(id,botao){
 
-    let total = 0;
-    let pago = 0;
-    let aberto = 0;
+document.querySelectorAll(".section")
+.forEach(x=>x.classList.remove("active"));
 
-    contas.forEach(conta => {
+document.getElementById(id)
+.classList.add("active");
 
-        total += Number(conta.valor);
 
-        if(conta.paga){
-            pago += Number(conta.valor);
-        }else{
-            aberto += Number(conta.valor);
-        }
+document.querySelectorAll("nav button")
+.forEach(x=>x.classList.remove("active"));
 
-    });
+if(botao)
+botao.classList.add("active");
 
-    document.getElementById("totalContas").textContent = dinheiro(total);
 
-    document.getElementById("totalPago").textContent = dinheiro(pago);
+renderizar();
 
-    document.getElementById("totalAberto").textContent = dinheiro(aberto);
-
-    document.getElementById("quantidadeContas").textContent = contas.length;
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
 }
 
 
-function mostrarContas(){
+function novoLancamento(tipo){
 
-    const lista = document.getElementById("listaContas");
+editando=null;
 
-    lista.innerHTML = "";
+document.getElementById("tituloModal")
+.innerText="➕ Novo lançamento";
 
-    let contasFiltradas = contas;
+document.getElementById("tipo").value =
+tipo || "Despesa";
 
-    if(filtroAtual === "pagas"){
-        contasFiltradas = contas.filter(c => c.paga);
-    }
+document.getElementById("descricao").value="";
+document.getElementById("valor").value="";
+document.getElementById("status").value="Pendente";
+document.getElementById("cartao").value="";
+document.getElementById("parcela").value="";
+document.getElementById("observacao").value="";
 
-    if(filtroAtual === "abertas"){
-        contasFiltradas = contas.filter(c => !c.paga);
-    }
+document.getElementById("vencimento").value =
+new Date().toISOString().slice(0,10);
 
-
-    if(contasFiltradas.length === 0){
-
-        lista.innerHTML = `
-            <div class="info">
-                Nenhuma conta encontrada.
-            </div>
-        `;
-
-        return;
-    }
-
-
-    contasFiltradas.forEach((conta,index) => {
-
-        const div = document.createElement("div");
-
-        div.className = "conta " + (conta.paga ? "paga" : "aberta");
-
-        div.innerHTML = `
-
-            <div class="linha">
-
-                <div>
-                    <div class="descricao">
-                        ${conta.descricao}
-                    </div>
-
-                    <div class="vencimento">
-                        📅 Vencimento: ${conta.vencimento}
-                    </div>
-                </div>
-
-                <div class="valor">
-                    ${dinheiro(Number(conta.valor))}
-                </div>
-
-            </div>
-
-            <div class="status">
-
-                <label>
-                    <input
-                        type="checkbox"
-                        ${conta.paga ? "checked" : ""}
-                        onchange="alterarStatus(${index})"
-                    >
-
-                    ${conta.paga ? "✅ Paga" : "⏳ Não paga"}
-
-                </label>
-
-                <button
-                    class="excluir"
-                    onclick="excluirConta(${index})">
-                    Excluir
-                </button>
-
-            </div>
-        `;
-
-        lista.appendChild(div);
-
-    });
+document.getElementById("modal")
+.classList.add("show");
 
 }
 
 
-function alterarStatus(index){
+function fecharModal(){
 
-    contas[index].paga = !contas[index].paga;
-
-    salvar();
-
-    atualizarResumo();
-
-    mostrarContas();
+document.getElementById("modal")
+.classList.remove("show");
 
 }
 
 
-function excluirConta(index){
+function salvarLancamento(){
 
-    if(confirm("Deseja excluir esta conta?")){
+const descricao =
+document.getElementById("descricao").value.trim();
 
-        contas.splice(index,1);
+const valor =
+Number(document.getElementById("valor").value);
 
-        salvar();
+if(!descricao){
 
-        atualizarResumo();
+alert("Digite uma descrição.");
 
-        mostrarContas();
+return;
 
-    }
+}
+
+if(!valor || valor<=0){
+
+alert("Digite um valor válido.");
+
+return;
 
 }
 
 
-function mostrarFormulario(){
+const item={
 
-    const formulario = document.getElementById("formulario");
+descricao,
 
-    formulario.style.display =
-        formulario.style.display === "none"
-        ? "block"
-        : "none";
+tipo:document.getElementById("tipo").value,
 
-}
+categoria:document.getElementById("categoria").value,
 
+valor,
 
-function adicionarConta(){
+status:document.getElementById("status").value,
 
-    const descricao =
-        document.getElementById("novaDescricao").value.trim();
+vencimento:document.getElementById("vencimento").value,
 
-    const vencimento =
-        document.getElementById("novoVencimento").value.trim();
+cartao:document.getElementById("cartao").value.trim(),
 
-    const valor =
-        Number(document.getElementById("novoValor").value);
+parcela:document.getElementById("parcela").value.trim(),
 
+observacao:document.getElementById("observacao").value.trim(),
 
-    if(!descricao || !vencimento || !valor){
+criado:new Date().toISOString()
 
-        alert("Preencha descrição, vencimento e valor.");
-
-        return;
-    }
+};
 
 
-    contas.push({
+if(editando!==null){
 
-        descricao:descricao,
+lancamentos[editando]=item;
 
-        vencimento:vencimento,
+}else{
 
-        valor:valor,
-
-        paga:false
-
-    });
-
-
-    salvar();
-
-    atualizarResumo();
-
-    mostrarContas();
-
-
-    document.getElementById("novaDescricao").value = "";
-
-    document.getElementById("novoVencimento").value = "";
-
-    document.getElementById("novoValor").value = "";
-
-    document.getElementById("formulario").style.display = "none";
+lancamentos.push(item);
 
 }
 
 
-function filtrar(tipo){
+salvar();
 
-    filtroAtual = tipo;
+fecharModal();
 
-    mostrarContas();
-
-}
-
-
-function abrirAba(id,botao){
-
-    document.querySelectorAll(".aba").forEach(aba => {
-        aba.classList.remove("ativa");
-    });
-
-    document.getElementById(id).classList.add("ativa");
-
-
-    document.querySelectorAll(".menu button").forEach(btn => {
-        btn.classList.remove("ativo");
-    });
-
-    botao.classList.add("ativo");
+renderizar();
 
 }
 
 
-atualizarResumo();
+function editar(index){
 
-mostrarContas();
+const x=lancamentos[index];
+
+editando=index;
+
+document.getElementById("tituloModal")
+.innerText="✏️ Editar lançamento";
+
+document.getElementById("descricao").value=x.descricao;
+
+document.getElementById("tipo").value=x.tipo;
+
+document.getElementById("categoria").value=x.categoria;
+
+document.getElementById("valor").value=x.valor;
+
+document.getElementById("status").value=x.status;
+
+document.getElementById("vencimento").value=x.vencimento;
+
+document.getElementById("cartao").value=x.cartao || "";
+
+document.getElementById("parcela").value=x.parcela || "";
+
+document.getElementById("observacao").value=x.observacao || "";
+
+document.getElementById("modal")
+.classList.add("show");
+
+}
+
+
+function excluir(index){
+
+if(!confirm("Excluir este lançamento?"))
+return;
+
+lancamentos.splice(index,1);
+
+salvar();
+
+renderizar();
+
+}
+
+
+function marcarPago(index){
+
+lancamentos[index].status="Pago";
+
+salvar();
+
+renderizar();
+
+}
+
+
+function totais(){
+
+let receitas=0;
+
+let despesas=0;
+
+let aberto=0;
+
+let pagas=0;
+
+lancamentos.forEach(x=>{
+
+const valor=Number(x.valor);
+
+if(x.tipo==="Receita"){
+
+receitas+=valor;
+
+}else{
+
+despesas+=valor;
+
+if(x.status!=="Pago")
+aberto+=valor;
+
+if(x.status==="Pago")
+pagas++;
+
+}
+
+});
+
+return{
+
+receitas,
+
+despesas,
+
+aberto,
+
+saldo:receitas-despesas,
+
+pagas
+
+};
+
+}
+
+
+function renderizar(){
+
+const t=totais();
+
+
+document.getElementById("saldo")
+.innerText=dinheiro(t.saldo);
+
+document.getElementById("receitas")
+.innerText=dinheiro(t.receitas);
+
+document.getElementById("despesas")
+.innerText=dinheiro(t.despesas);
+
+document.getElementById("aberto")
+.innerText=dinheiro(t.aberto);
+
+
+document.getElementById("quantidade")
+.innerText=lancamentos.length;
+
+document.getElementById("pagas")
+.innerText=t.pagas;
+
+document.getElementById("pendentes")
+.innerText=
+lancamentos.filter(x=>
+x.tipo==="Despesa" &&
+x.status!=="Pago"
+).length;
+
+
+renderLista();
+
+renderReceitas();
+
+renderDespesas();
+
+renderProximas();
+
+renderCartoes();
+
+renderParcelas();
+
+renderMeta();
+
+desenharGrafico();
+
+}
+
+
+function renderLista(){
+
+const busca=
+(document.getElementById("busca")?.value || "")
+.toLowerCase();
+
+const filtro=
+document.getElementById("filtro")?.value || "Todos";
+
+
+const lista=lancamentos
+.map((x,i)=>({x,i}))
+.filter(({x})=>{
+
+const texto=
+(x.descricao+" "+x.categoria+" "+(x.cartao||""))
+.toLowerCase();
+
+const buscaOk=
+!busca || texto.includes(busca);
+
+const filtroOk=
+filtro==="Todos" ||
+x.status===filtro;
+
+return buscaOk && filtroOk;
+
+})
+.reverse();
+
+
+document.getElementById("lista").innerHTML=
+lista.length
+? lista.map(({x,i})=>linha(x,i)).join("")
+: '<div class="empty">Nenhuma conta encontrada.</div>';
+
+}
+
+
+function linha(x,i){
+
+const cor=
+x.tipo==="Receita"
+?"green"
+:"red";
+
+
+return `
+
+<div class="row">
+
+<div>
+
+<div class="desc">
+${escapeHtml(x.descricao)}
+</div>
+
+<div class="meta">
+${escapeHtml(x.categoria)}
+${x.vencimento ? " • "+formatarData(x.vencimento):""}
+${x.cartao ? " • 💳 "+escapeHtml(x.cartao):""}
+${x.parcela ? " • Parcela "+escapeHtml(x.parcela):""}
+</div>
+
+<span class="badge">
+${x.status}
+</span>
+
+</div>
+
+
+<div style="text-align:right">
+
+<div class="amount ${cor}">
+${x.tipo==="Receita"?"+":"-"}
+${dinheiro(x.valor)}
+</div>
+
+<div class="actions">
+
+${x.tipo==="Despesa" && x.status!=="Pago"
+? `<button class="primary" onclick="marcarPago(${i})">✓</button>`
+:""}
+
+<button class="secondary" onclick="editar(${i})">
+✏️
+</button>
+
+<button class="danger" onclick="excluir(${i})">
+🗑️
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+function renderReceitas(){
+
+const lista=lancamentos
+.map((x,i)=>({x,i}))
+.filter(y=>y.x.tipo==="Receita")
+.reverse();
+
+
+document.getElementById("listaReceitas").innerHTML=
+lista.length
+?lista.map(({x,i})=>linha(x,i)).join("")
+:'<div class="empty">Nenhuma receita cadastrada.</div>';
+
+}
+
+
+function renderDespesas(){
+
+const lista=lancamentos
+.map((x,i)=>({x,i}))
+.filter(y=>y.x.tipo==="Despesa")
+.reverse();
+
+
+document.getElementById("listaDespesas").innerHTML=
+lista.length
+?lista.map(({x,i})=>linha(x,i)).join("")
+:'<div class="empty">Nenhuma despesa cadastrada.</div>';
+
+}
+
+
+function renderProximas(){
+
+const lista=lancamentos
+.filter(x=>
+x.tipo==="Despesa" &&
+x.status!=="Pago"
+)
+.sort((a,b)=>
+(a.vencimento||"").localeCompare(b.vencimento||"")
+)
+.slice(0,5);
+
+
+document.getElementById("proximas").innerHTML=
+lista.length
+?lista.map(x=>`
+
+<div class="row">
+
+<div>
+
+<div class="desc">
+${escapeHtml(x.descricao)}
+</div>
+
+<div class="meta">
+Vence ${formatarData(x.vencimento)}
+</div>
+
+</div>
+
+<div class="amount red">
+${dinheiro(x.valor)}
+</div>
+
+</div>
+
+`).join("")
+:'<div class="empty">Nenhuma conta em aberto.</div>';
+
+}
+
+
+function renderCartoes(){
+
+const mapa={};
+
+lancamentos
+.filter(x=>x.cartao)
+.forEach(x=>{
+
+mapa[x.cartao]=
+(mapa[x.cartao]||0)+Number(x.valor);
+
+});
+
+
+const dados=Object.entries(mapa)
+.sort((a,b)=>b[1]-a[1]);
+
+
+document.getElementById("cartoes").innerHTML=
+dados.length
+?dados.map(x=>`
+
+<div class="row">
+
+<div>
+<div class="desc">💳 ${escapeHtml(x[0])}</div>
+<div class="meta">Total lançado</div>
+</div>
+
+<div class="amount red">
+${dinheiro(x[1])}
+</div>
+
+</div>
+
+`).join("")
+:'<div class="empty">Nenhum cartão cadastrado.</div>';
+
+}
+
+
+function renderParcelas(){
+
+const dados=lancamentos
+.filter(x=>x.parcela);
+
+
+document.getElementById("parcelas").innerHTML=
+dados.length
+?dados.map(x=>{
+
+const m=x.parcela.match(/(\d+)\s*\/\s*(\d+)/);
+
+if(!m)
+return `<p>${escapeHtml(x.descricao)} • ${escapeHtml(x.parcela)}</p>`;
+
+const atual=Number(m[1]);
+
+const total=Number(m[2]);
+
+const porcentagem=
+Math.min(atual/total*100,100);
+
+
+return `
+
+<div style="margin-bottom:18px">
+
+<strong>
+${escapeHtml(x.descricao)}
+</strong>
+
+<div style="display:flex;justify-content:space-between;margin-top:5px">
+
+<span>${atual}/${total}</span>
+
+<span>${porcentagem.toFixed(0)}%</span>
+
+</div>
+
+<div class="bar">
+
+<div style="width:${porcentagem}%"></div>
+
+</div>
+
+</div>
+
+`;
+
+}).join("")
+:'<div class="empty">Nenhuma parcela cadastrada.</div>';
+
+}
+
+
+function salvarMeta(){
+
+meta=
+Number(document.getElementById("meta").value)||0;
+
+localStorage.setItem(
+"meuFinanceiroMeta",
+meta
+);
+
+renderMeta();
+
+}
+
+
+function renderMeta(){
+
+document.getElementById("meta").value=meta;
+
+const t=totais();
+
+const guardado=
+Math.max(0,t.saldo);
+
+const porcentagem=
+meta>0
+?Math.min(guardado/meta*100,100)
+:0;
+
+
+document.getElementById("metaBarra")
+.style.width=porcentagem+"%";
+
+
+document.getElementById("metaTexto")
+.innerText=
+`${dinheiro(guardado)} de ${dinheiro(meta)} • ${porcentagem.toFixed(0)}%`;
+
+}
+
+
+function desenharGrafico(){
+
+const canvas=
+document.getElementById("grafico");
+
+const ctx=
+canvas.getContext("2d");
+
+const largura=
+canvas.clientWidth || 300;
+
+const altura=250;
+
+const escala=
+window.devicePixelRatio||1;
+
+canvas.width=largura*escala;
+
+canvas.height=altura*escala;
+
+ctx.scale(escala,escala);
+
+ctx.clearRect(0,0,largura,altura);
+
+
+const t=totais();
+
+const maior=
+Math.max(t.receitas,t.despesas,1);
+
+
+const barras=[
+
+{
+nome:"Receitas",
+valor:t.receitas,
+cor:"#43d953"
+},
+
+{
+nome:"Despesas",
+valor:t.despesas,
+cor:"#ff5555"
+}
+
+];
+
+
+barras.forEach((b,i)=>{
+
+const x=
+largura/2-100+i*200;
+
+const h=
+(b.valor/maior)*160;
+
+ctx.fillStyle=b.cor;
+
+ctx.fillRect(
+x,
+200-h,
+80,
+h
+);
+
+ctx.fillStyle="#fff";
+
+ctx.textAlign="center";
+
+ctx.font="bold 14px Arial";
+
+ctx.fillText(
+dinheiro(b.valor),
+x+40,
+190-h
+);
+
+ctx.fillText(
+b.nome,
+x+40,
+225
+);
+
+});
+
+}
+
+
+function exportar(){
+
+const dados=JSON.stringify({
+
+lancamentos,
+
+meta
+
+},null,2);
+
+
+const blob=
+new Blob([dados],{
+type:"application/json"
+});
+
+
+const url=
+URL.createObjectURL(blob);
+
+
+const a=
+document.createElement("a");
+
+a.href=url;
+
+a.download=
+"backup-meu-financeiro.json";
+
+a.click();
+
+URL.revokeObjectURL(url);
+
+}
+
+
+function importar(event){
+
+const arquivo=
+event.target.files[0];
+
+if(!arquivo)
+return;
+
+
+const leitor=
+new FileReader();
+
+
+leitor.onload=function(e){
+
+try{
+
+const dados=
+JSON.parse(e.target.result);
+
+
+if(Array.isArray(dados.lancamentos)){
+
+lancamentos=
+dados.lancamentos;
+
+}
+
+
+if(dados.meta!==undefined){
+
+meta=
+Number(dados.meta)||0;
+
+}
+
+
+salvar();
+
+localStorage.setItem(
+"meuFinanceiroMeta",
+meta
+);
+
+renderizar();
+
+alert("Backup importado com sucesso!");
+
+}catch{
+
+alert("Arquivo de backup inválido.");
+
+}
+
+};
+
+
+leitor.readAsText(arquivo);
+
+}
+
+
+function limparTudo(){
+
+if(!confirm(
+"Tem certeza que deseja apagar TODOS os lançamentos?"
+))
+return;
+
+
+lancamentos=[];
+
+salvar();
+
+renderizar();
+
+}
+
+
+function formatarData(data){
+
+if(!data)
+return "Sem data";
+
+const partes=data.split("-");
+
+if(partes.length!==3)
+return data;
+
+return `${partes[2]}/${partes[1]}/${partes[0]}`;
+
+}
+
+
+function escapeHtml(text){
+
+return String(text||"")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+renderizar();
+
+window.addEventListener(
+"resize",
+desenharGrafico
+);
 
 </script>
 
