@@ -3,243 +3,261 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Meu Financeiro</title>
 
 <style>
 *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 body{
-    font-family:Arial, sans-serif;
-    background:#101010;
-    color:white;
-    padding-bottom:90px;
+  font-family:Arial,sans-serif;
+  background:#101010;
+  color:#fff;
+  padding-bottom:90px;
 }
 
 header{
-    background:linear-gradient(135deg,#151515,#292929);
-    padding:28px 18px 24px;
-    text-align:center;
-    border-bottom:3px solid #42d34f;
+  background:linear-gradient(135deg,#151515,#292929);
+  padding:30px 15px 25px;
+  text-align:center;
+  border-bottom:4px solid #35c759;
 }
 
 header h1{
-    font-size:32px;
-    margin-bottom:8px;
+  font-size:38px;
+  margin-bottom:8px;
 }
 
 header p{
-    color:#aaa;
-    font-size:18px;
+  color:#aaa;
+  font-size:19px;
 }
 
 nav{
-    display:flex;
-    gap:10px;
-    padding:18px;
-    overflow-x:auto;
-    background:#171717;
+  display:flex;
+  gap:12px;
+  overflow-x:auto;
+  padding:18px;
+  background:#171717;
 }
 
 nav button{
-    min-width:150px;
-    padding:17px 20px;
-    border:0;
-    border-radius:18px;
-    background:#303030;
-    color:white;
-    font-size:18px;
-    font-weight:bold;
+  flex:0 0 auto;
+  border:0;
+  border-radius:18px;
+  padding:18px 28px;
+  background:#303030;
+  color:white;
+  font-size:19px;
+  font-weight:bold;
 }
 
 nav button.active{
-    background:#43c74a;
+  background:#35c759;
+  color:white;
 }
 
 main{
-    padding:22px;
+  padding:25px 18px;
+  max-width:900px;
+  margin:auto;
 }
 
-.section{
-    display:none;
+section{
+  display:none;
 }
 
-.section.active{
-    display:block;
+section.active{
+  display:block;
 }
 
 h2{
-    font-size:30px;
-    margin:10px 0 22px;
+  font-size:32px;
+  margin-bottom:22px;
 }
 
 .cards{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:16px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
 }
 
 .card{
-    background:#202020;
-    border:1px solid #383838;
-    border-radius:22px;
-    padding:22px;
+  background:#222;
+  border:1px solid #3a3a3a;
+  border-radius:22px;
+  padding:22px;
+  margin-bottom:18px;
 }
 
-.card span{
-    display:block;
-    color:#aaa;
-    font-size:17px;
-    margin-bottom:10px;
+.card h3{
+  color:#aaa;
+  font-size:18px;
+  margin-bottom:12px;
 }
 
-.card strong{
-    font-size:25px;
+.valor{
+  font-size:27px;
+  font-weight:bold;
 }
 
-.blue{color:#2998ff}
-.green{color:#43df4c}
-.red{color:#ff5555}
-.yellow{color:#ffd12f}
+.verde{color:#35d65b}
+.vermelho{color:#ff5555}
+.azul{color:#2699ff}
+.amarelo{color:#ffd43b}
 
-.box{
-    background:#202020;
-    border:1px solid #383838;
-    border-radius:22px;
-    padding:22px;
-    margin-top:22px;
+.form{
+  background:#222;
+  border:1px solid #3a3a3a;
+  border-radius:22px;
+  padding:22px;
 }
 
-.box h3{
-    font-size:24px;
-    margin-bottom:18px;
+label{
+  display:block;
+  margin-top:15px;
+  margin-bottom:7px;
+  color:#ccc;
+  font-weight:bold;
 }
 
 input,select{
-    width:100%;
-    background:#151515;
-    border:1px solid #444;
-    color:white;
-    padding:16px;
-    border-radius:13px;
-    font-size:17px;
-    margin-bottom:13px;
+  width:100%;
+  padding:15px;
+  border-radius:12px;
+  border:1px solid #555;
+  background:#151515;
+  color:white;
+  font-size:17px;
 }
 
-button.primary{
-    width:100%;
-    padding:17px;
-    border:0;
-    border-radius:14px;
-    background:#43c74a;
-    color:white;
-    font-size:18px;
-    font-weight:bold;
+button.principal{
+  width:100%;
+  margin-top:20px;
+  padding:16px;
+  border:0;
+  border-radius:14px;
+  background:#35c759;
+  color:white;
+  font-size:18px;
+  font-weight:bold;
 }
 
-button.danger{
-    background:#d93636;
+.lista{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
 }
 
-.transaction{
-    background:#242424;
-    border:1px solid #3a3a3a;
-    border-radius:18px;
-    padding:17px;
-    margin-bottom:12px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
+.item{
+  background:#222;
+  border:1px solid #3a3a3a;
+  border-radius:18px;
+  padding:18px;
 }
 
-.transaction-info strong{
-    display:block;
-    font-size:18px;
-    margin-bottom:5px;
+.item-top{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
 }
 
-.transaction-info small{
-    color:#999;
+.item h3{
+  font-size:19px;
 }
 
-.transaction-value{
-    font-weight:bold;
-    white-space:nowrap;
+.item p{
+  color:#aaa;
+  margin-top:7px;
 }
 
-.actions{
-    display:flex;
-    gap:7px;
-    margin-top:8px;
+.acoes{
+  display:flex;
+  gap:8px;
+  margin-top:15px;
 }
 
-.actions button{
-    border:0;
-    border-radius:9px;
-    padding:8px 10px;
-    color:white;
-    background:#333;
+.acoes button{
+  border:0;
+  padding:10px 14px;
+  border-radius:10px;
+  font-weight:bold;
 }
 
-.empty{
-    text-align:center;
-    color:#888;
-    padding:35px 10px;
+.pagar{
+  background:#35c759;
+  color:white;
+}
+
+.excluir{
+  background:#ff4444;
+  color:white;
+}
+
+.vazio{
+  text-align:center;
+  color:#888;
+  padding:40px 15px;
+}
+
+.situacao{
+  text-align:center;
+  padding:25px;
+  font-size:21px;
+  color:#aaa;
 }
 
 .bottom{
-    position:fixed;
-    bottom:0;
-    left:0;
-    right:0;
-    height:78px;
-    background:#171717;
-    border-top:1px solid #333;
-    display:flex;
-    justify-content:space-around;
-    align-items:center;
-    z-index:10;
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:#181818;
+  border-top:1px solid #333;
+  display:flex;
+  justify-content:space-around;
+  padding:10px 5px;
+  z-index:100;
 }
 
 .bottom button{
-    background:none;
-    border:0;
-    color:#aaa;
-    font-size:14px;
-    font-weight:bold;
-}
-
-.bottom button.active{
-    color:white;
+  background:none;
+  border:0;
+  color:#aaa;
+  font-size:13px;
+  font-weight:bold;
 }
 
 .bottom span{
-    display:block;
-    font-size:24px;
-    margin-bottom:4px;
+  display:block;
+  font-size:25px;
+  margin-bottom:3px;
 }
 
-@media(max-width:500px){
-    .cards{
-        grid-template-columns:1fr 1fr;
-    }
+@media(max-width:600px){
 
-    .card{
-        padding:17px;
-    }
+  header h1{
+    font-size:34px;
+  }
 
-    .card strong{
-        font-size:21px;
-    }
+  .cards{
+    grid-template-columns:1fr 1fr;
+  }
 
-    h2{
-        font-size:27px;
-    }
+  .card{
+    padding:18px;
+  }
+
+  .valor{
+    font-size:23px;
+  }
+
+  h2{
+    font-size:29px;
+  }
 }
 </style>
 </head>
@@ -247,52 +265,57 @@ button.danger{
 <body>
 
 <header>
-    <h1>💰 Meu Financeiro</h1>
-    <p>Controle financeiro pessoal</p>
+  <h1>💰 Meu Financeiro</h1>
+  <p>Controle financeiro pessoal</p>
 </header>
 
 <nav>
-    <button class="active" onclick="mostrar('inicio',this)">🏠 Início</button>
-    <button onclick="mostrar('contas',this)">📋 Contas</button>
-    <button onclick="mostrar('lancar',this)">➕ Lançar</button>
-    <button onclick="mostrar('relatorios',this)">📊 Relatórios</button>
+  <button onclick="abrir('inicio')" id="btn-inicio" class="active">🏠 Início</button>
+  <button onclick="abrir('contas')" id="btn-contas">📋 Contas</button>
+  <button onclick="abrir('lancar')" id="btn-lancar">➕ Lançar</button>
+  <button onclick="abrir('relatorios')" id="btn-relatorios">📊 Relatórios</button>
 </nav>
 
 <main>
 
 <!-- INÍCIO -->
-<section id="inicio" class="section active">
+<section id="inicio" class="active">
 
 <h2>Resumo financeiro</h2>
 
 <div class="cards">
 
 <div class="card">
-<span>Saldo</span>
-<strong id="saldo" class="blue">R$ 0,00</strong>
+<h3>Saldo</h3>
+<div class="valor azul" id="saldo">R$ 0,00</div>
 </div>
 
 <div class="card">
-<span>Receitas</span>
-<strong id="receitas" class="green">R$ 0,00</strong>
+<h3>Receitas</h3>
+<div class="valor verde" id="receitas">R$ 0,00</div>
 </div>
 
 <div class="card">
-<span>Despesas</span>
-<strong id="despesas" class="red">R$ 0,00</strong>
+<h3>Despesas</h3>
+<div class="valor vermelho" id="despesas">R$ 0,00</div>
 </div>
 
 <div class="card">
-<span>Em aberto</span>
-<strong id="aberto" class="yellow">R$ 0,00</strong>
+<h3>Em aberto</h3>
+<div class="valor amarelo" id="aberto">R$ 0,00</div>
 </div>
 
 </div>
 
-<div class="box">
-<h3>📊 Movimento financeiro</h3>
-<div id="resumoMovimento" class="empty">
-Nenhum lançamento realizado.
+<div class="card">
+<h2>📊 Movimento financeiro</h2>
+<div id="movimento"></div>
+</div>
+
+<div class="card">
+<h2>💡 Situação financeira</h2>
+<div class="situacao" id="situacao">
+Seu saldo está zerado.
 </div>
 </div>
 
@@ -300,55 +323,55 @@ Nenhum lançamento realizado.
 
 
 <!-- CONTAS -->
-<section id="contas" class="section">
+<section id="contas">
 
 <h2>📋 Minhas contas</h2>
 
-<div class="box">
-<h3>Contas cadastradas</h3>
-<div id="listaContas"></div>
-</div>
+<div id="listaContas" class="lista"></div>
 
 </section>
 
 
 <!-- LANÇAR -->
-<section id="lancar" class="section">
+<section id="lancar">
 
 <h2>➕ Novo lançamento</h2>
 
-<div class="box">
+<div class="form">
 
-<h3>Adicionar lançamento</h3>
-
+<label>Tipo</label>
 <select id="tipo">
 <option value="receita">💰 Receita</option>
 <option value="despesa">💸 Despesa</option>
-<option value="conta">📋 Conta a pagar</option>
 </select>
 
-<input id="descricao" type="text" placeholder="Descrição">
+<label>Descrição</label>
+<input id="descricao" type="text" placeholder="Ex: Salário, aluguel...">
 
-<input id="valor" type="number" step="0.01" placeholder="Valor">
+<label>Valor</label>
+<input id="valor" type="number" step="0.01" placeholder="0,00">
 
-<input id="data" type="date">
-
+<label>Categoria</label>
 <select id="categoria">
-<option>Salário</option>
-<option>Alimentação</option>
 <option>Casa</option>
+<option>Alimentação</option>
 <option>Transporte</option>
-<option>Cartão</option>
-<option>Energia</option>
-<option>Água</option>
-<option>Internet</option>
-<option>Telefone</option>
+<option>Salário</option>
+<option>Compras</option>
+<option>Saúde</option>
 <option>Lazer</option>
+<option>Educação</option>
 <option>Outros</option>
 </select>
 
-<button class="primary" onclick="adicionar()">
-Adicionar lançamento
+<label>Data</label>
+<input id="data" type="date">
+
+<label>Data de vencimento</label>
+<input id="vencimento" type="date">
+
+<button class="principal" onclick="salvarLancamento()">
+💾 Salvar lançamento
 </button>
 
 </div>
@@ -357,43 +380,41 @@ Adicionar lançamento
 
 
 <!-- RELATÓRIOS -->
-<section id="relatorios" class="section">
+<section id="relatorios">
 
 <h2>📊 Relatórios</h2>
 
-<div class="box">
+<div class="card">
+<h2>Resumo</h2>
 
-<h3>Resumo</h3>
-
-<p style="margin-bottom:12px">
+<p style="font-size:19px;margin:12px 0">
 Receitas:
-<strong id="relReceitas" class="green">R$ 0,00</strong>
+<strong class="verde" id="relReceitas">R$ 0,00</strong>
 </p>
 
-<p style="margin-bottom:12px">
+<p style="font-size:19px;margin:12px 0">
 Despesas:
-<strong id="relDespesas" class="red">R$ 0,00</strong>
+<strong class="vermelho" id="relDespesas">R$ 0,00</strong>
 </p>
 
-<p style="margin-bottom:12px">
+<p style="font-size:19px;margin:12px 0">
 Contas em aberto:
-<strong id="relAberto" class="yellow">R$ 0,00</strong>
+<strong class="amarelo" id="relAberto">R$ 0,00</strong>
 </p>
 
-<p>
+<p style="font-size:19px;margin:12px 0">
 Saldo:
-<strong id="relSaldo" class="blue">R$ 0,00</strong>
+<strong class="azul" id="relSaldo">R$ 0,00</strong>
 </p>
 
 </div>
 
-<div class="box">
+<div class="card">
+<h2>📈 Quantidade</h2>
 
-<h3>💡 Situação financeira</h3>
-
-<div id="situacao" class="empty">
-Adicione lançamentos para visualizar.
-</div>
+<p id="quantidade" style="font-size:20px;color:#aaa">
+Nenhum lançamento.
+</p>
 
 </div>
 
@@ -404,22 +425,22 @@ Adicione lançamentos para visualizar.
 
 <div class="bottom">
 
-<button class="active" onclick="mostrar('inicio',this)">
+<button onclick="abrir('inicio')">
 <span>🏠</span>
 Início
 </button>
 
-<button onclick="mostrar('lancar',this)">
+<button onclick="abrir('lancar')">
 <span>➕</span>
 Lançar
 </button>
 
-<button onclick="mostrar('contas',this)">
+<button onclick="abrir('contas')">
 <span>📋</span>
 Contas
 </button>
 
-<button onclick="mostrar('relatorios',this)">
+<button onclick="abrir('relatorios')">
 <span>📊</span>
 Relatórios
 </button>
@@ -429,7 +450,9 @@ Relatórios
 
 <script>
 
-let dados = JSON.parse(localStorage.getItem("meuFinanceiro")) || [];
+let lancamentos =
+JSON.parse(localStorage.getItem("meuFinanceiro")) || [];
+
 
 function dinheiro(valor){
 
@@ -441,41 +464,48 @@ currency:"BRL"
 }
 
 
-function salvar(){
+function abrir(nome){
 
-localStorage.setItem(
-"meuFinanceiro",
-JSON.stringify(dados)
-);
+document.querySelectorAll("section")
+.forEach(s => s.classList.remove("active"));
+
+document.getElementById(nome)
+.classList.add("active");
+
+document.querySelectorAll("nav button")
+.forEach(b => b.classList.remove("active"));
+
+let btn=document.getElementById("btn-"+nome);
+
+if(btn) btn.classList.add("active");
 
 atualizar();
 
+window.scrollTo(0,0);
+
 }
 
 
-function adicionar(){
+function salvarLancamento(){
 
 let tipo=document.getElementById("tipo").value;
-
 let descricao=document.getElementById("descricao").value.trim();
-
-let valor=parseFloat(
-document.getElementById("valor").value
-);
-
-let data=document.getElementById("data").value;
-
+let valor=Number(document.getElementById("valor").value);
 let categoria=document.getElementById("categoria").value;
+let data=document.getElementById("data").value;
+let vencimento=document.getElementById("vencimento").value;
 
-if(!descricao || !valor){
-
-alert("Preencha a descrição e o valor.");
-
+if(!descricao){
+alert("Digite uma descrição.");
 return;
-
 }
 
-dados.push({
+if(!valor || valor<=0){
+alert("Digite um valor válido.");
+return;
+}
+
+let novo={
 
 id:Date.now(),
 
@@ -485,49 +515,69 @@ descricao:descricao,
 
 valor:valor,
 
-data:data,
-
 categoria:categoria,
 
-pago: tipo !== "conta"
+data:data,
 
-});
+vencimento:vencimento,
+
+pago:false
+
+};
+
+lancamentos.push(novo);
 
 salvar();
 
 document.getElementById("descricao").value="";
-
 document.getElementById("valor").value="";
+document.getElementById("data").value="";
+document.getElementById("vencimento").value="";
 
-alert("Lançamento adicionado com sucesso!");
+alert("Lançamento salvo com sucesso! ✅");
 
-mostrarPorNome("contas");
-
-}
-
-
-function excluir(id){
-
-if(confirm("Deseja excluir este lançamento?")){
-
-dados=dados.filter(item=>item.id!==id);
-
-salvar();
-
-}
+abrir("inicio");
 
 }
 
 
-function pagar(id){
+function salvar(){
 
-let item=dados.find(x=>x.id===id);
+localStorage.setItem(
+"meuFinanceiro",
+JSON.stringify(lancamentos)
+);
+
+}
+
+
+function marcarPago(id){
+
+let item=lancamentos.find(x=>x.id===id);
 
 if(item){
 
 item.pago=true;
 
 salvar();
+
+atualizar();
+
+}
+
+}
+
+
+function excluir(id){
+
+if(confirm("Deseja realmente excluir este lançamento?")){
+
+lancamentos=
+lancamentos.filter(x=>x.id!==id);
+
+salvar();
+
+atualizar();
 
 }
 
@@ -537,68 +587,60 @@ salvar();
 function atualizar(){
 
 let receitas=0;
-
 let despesas=0;
-
 let aberto=0;
 
-dados.forEach(item=>{
+lancamentos.forEach(item=>{
 
 if(item.tipo==="receita"){
 
 receitas+=item.valor;
 
-}
-
-if(item.tipo==="despesa"){
+}else{
 
 despesas+=item.valor;
 
-}
-
-if(item.tipo==="conta" && !item.pago){
+if(!item.pago){
 
 aberto+=item.valor;
 
 }
 
-});
+}
 
+});
 
 let saldo=receitas-despesas;
 
-document.getElementById("saldo").textContent=dinheiro(saldo);
 
-document.getElementById("receitas").textContent=dinheiro(receitas);
+document.getElementById("saldo").innerText=
+dinheiro(saldo);
 
-document.getElementById("despesas").textContent=dinheiro(despesas);
+document.getElementById("receitas").innerText=
+dinheiro(receitas);
 
-document.getElementById("aberto").textContent=dinheiro(aberto);
+document.getElementById("despesas").innerText=
+dinheiro(despesas);
 
-document.getElementById("relReceitas").textContent=dinheiro(receitas);
-
-document.getElementById("relDespesas").textContent=dinheiro(despesas);
-
-document.getElementById("relAberto").textContent=dinheiro(aberto);
-
-document.getElementById("relSaldo").textContent=dinheiro(saldo);
+document.getElementById("aberto").innerText=
+dinheiro(aberto);
 
 
-if(dados.length===0){
+document.getElementById("relReceitas").innerText=
+dinheiro(receitas);
 
-document.getElementById("resumoMovimento").innerHTML=
-"Nenhum lançamento realizado.";
+document.getElementById("relDespesas").innerText=
+dinheiro(despesas);
 
-}else{
+document.getElementById("relAberto").innerText=
+dinheiro(aberto);
 
-document.getElementById("resumoMovimento").innerHTML=
-"<strong>"+dados.length+
-"</strong> lançamento(s) registrado(s).";
-
-}
+document.getElementById("relSaldo").innerText=
+dinheiro(saldo);
 
 
-let situacao=document.getElementById("situacao");
+let situacao=
+document.getElementById("situacao");
 
 if(saldo>0){
 
@@ -608,7 +650,7 @@ situacao.innerHTML=
 }else if(saldo<0){
 
 situacao.innerHTML=
-"🔴 Atenção: suas despesas estão maiores que suas receitas.";
+"🔴 Atenção! Suas despesas estão maiores que suas receitas.";
 
 }else{
 
@@ -618,7 +660,14 @@ situacao.innerHTML=
 }
 
 
+document.getElementById("quantidade").innerText=
+lancamentos.length+
+" lançamento(s) cadastrado(s).";
+
+
 mostrarContas();
+
+mostrarMovimento();
 
 }
 
@@ -627,60 +676,85 @@ function mostrarContas(){
 
 let lista=document.getElementById("listaContas");
 
-let contas=dados.filter(
-item=>item.tipo==="conta"
-);
-
-
-if(contas.length===0){
+if(lancamentos.length===0){
 
 lista.innerHTML=
-'<div class="empty">Nenhuma conta cadastrada.</div>';
+'<div class="vazio">Nenhuma conta cadastrada.</div>';
 
 return;
 
 }
 
-
 lista.innerHTML="";
 
-contas.forEach(item=>{
+lancamentos
+.slice()
+.reverse()
+.forEach(item=>{
 
 let div=document.createElement("div");
 
-div.className="transaction";
+div.className="item";
+
+let tipoTexto=
+item.tipo==="receita"
+?"💰 Receita"
+:"💸 Despesa";
+
+let cor=
+item.tipo==="receita"
+?"verde"
+:"vermelho";
+
+let status="";
+
+if(item.tipo==="despesa"){
+
+status=item.pago
+?"<span class='verde'>✅ Paga</span>"
+:"<span class='amarelo'>⏳ Em aberto</span>";
+
+}
 
 div.innerHTML=`
 
-<div class="transaction-info">
+<div class="item-top">
 
-<strong>${item.descricao}</strong>
+<div>
 
-<small>
-${item.categoria}
-${item.data ? " • "+formatarData(item.data):""}
-</small>
+<h3>${tipoTexto} — ${item.descricao}</h3>
 
-<div class="actions">
+<p>🏷️ ${item.categoria}</p>
 
-${!item.pago ?
-`<button onclick="pagar(${item.id})">
-☑️ Pagar
-</button>` :
-`<button>✅ Paga</button>`
-}
+<p>📅 ${item.data || "Sem data"}</p>
 
-<button onclick="excluir(${item.id})">
+${item.vencimento
+?`<p>⏰ Vencimento: ${item.vencimento}</p>`
+:""}
+
+<p>${status}</p>
+
+</div>
+
+<div class="valor ${cor}">
+${dinheiro(item.valor)}
+</div>
+
+</div>
+
+<div class="acoes">
+
+${item.tipo==="despesa" && !item.pago
+?`<button class="pagar"
+onclick="marcarPago(${item.id})">
+✅ Marcar paga
+</button>`
+:""}
+
+<button class="excluir"
+onclick="excluir(${item.id})">
 🗑️ Excluir
 </button>
-
-</div>
-
-</div>
-
-<div class="transaction-value ${item.pago?'green':'yellow'}">
-
-${dinheiro(item.valor)}
 
 </div>
 
@@ -693,58 +767,61 @@ lista.appendChild(div);
 }
 
 
-function formatarData(data){
+function mostrarMovimento(){
 
-if(!data)return "";
+let area=document.getElementById("movimento");
 
-let partes=data.split("-");
+if(lancamentos.length===0){
 
-return partes[2]+"/"+partes[1]+"/"+partes[0];
+area.innerHTML=
+'<div class="vazio">Nenhum movimento registrado ainda.</div>';
 
-}
-
-
-function mostrar(nome,botao){
-
-document.querySelectorAll(".section")
-.forEach(sec=>{
-sec.classList.remove("active");
-});
-
-document.getElementById(nome)
-.classList.add("active");
-
-
-document.querySelectorAll("nav button, .bottom button")
-.forEach(btn=>{
-btn.classList.remove("active");
-});
-
-if(botao){
-botao.classList.add("active");
-}
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
+return;
 
 }
 
+let ultimos=
+lancamentos.slice(-5).reverse();
 
-function mostrarPorNome(nome){
+area.innerHTML="";
 
-document.querySelectorAll(".section")
-.forEach(sec=>{
-sec.classList.remove("active");
-});
+ultimos.forEach(item=>{
 
-document.getElementById(nome)
-.classList.add("active");
+let cor=
+item.tipo==="receita"
+?"verde"
+:"vermelho";
 
-window.scrollTo({
-top:0,
-behavior:"smooth"
+let sinal=
+item.tipo==="receita"
+?"+ "
+:"- ";
+
+let div=document.createElement("div");
+
+div.style.padding="14px 0";
+div.style.borderBottom="1px solid #333";
+
+div.innerHTML=`
+
+<div style="display:flex;justify-content:space-between">
+
+<strong>${item.descricao}</strong>
+
+<strong class="${cor}">
+${sinal}${dinheiro(item.valor)}
+</strong>
+
+</div>
+
+<div style="color:#888;margin-top:5px">
+${item.categoria}
+</div>
+
+`;
+
+area.appendChild(div);
+
 });
 
 }
