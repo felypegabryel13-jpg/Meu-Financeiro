@@ -2,121 +2,262 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Meu Financeiro</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+    box-sizing:border-box;
+}
+
 body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#f3f5f7;
-color:#222;
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#111;
+    color:white;
 }
+
 header{
-background:#111827;
-color:white;
-padding:24px 18px;
-text-align:center;
+    background:linear-gradient(135deg,#111,#292929);
+    padding:22px 18px;
+    text-align:center;
+    border-bottom:2px solid #43b649;
 }
-header h1{margin:0;font-size:28px}
-header p{margin:6px 0 0;color:#cbd5e1}
+
+header h1{
+    margin:0;
+    font-size:28px;
+}
+
+header p{
+    margin:6px 0 0;
+    color:#aaa;
+}
+
+.menu{
+    display:flex;
+    overflow-x:auto;
+    gap:8px;
+    padding:12px;
+    background:#1b1b1b;
+}
+
+.menu button{
+    border:0;
+    background:#303030;
+    color:white;
+    padding:12px 18px;
+    border-radius:12px;
+    font-size:15px;
+    white-space:nowrap;
+}
+
+.menu button.ativo{
+    background:#43b649;
+    color:white;
+    font-weight:bold;
+}
 
 .container{
-max-width:700px;
-margin:auto;
-padding:18px;
+    padding:15px;
+    max-width:900px;
+    margin:auto;
 }
 
-.saldo{
-background:#111827;
-color:white;
-border-radius:18px;
-padding:22px;
-margin-bottom:16px;
-box-shadow:0 5px 15px #0002;
+.aba{
+    display:none;
 }
-.saldo small{color:#cbd5e1}
-.saldo h2{
-font-size:34px;
-margin:8px 0 0;
+
+.aba.ativa{
+    display:block;
 }
 
 .cards{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:12px;
-margin-bottom:18px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    margin-bottom:18px;
 }
+
 .card{
-background:white;
-padding:18px;
-border-radius:15px;
-box-shadow:0 3px 10px #0001;
+    background:#202020;
+    border-radius:15px;
+    padding:16px;
+    border:1px solid #333;
 }
-.card small{color:#666}
+
+.card span{
+    display:block;
+    color:#aaa;
+    font-size:13px;
+    margin-bottom:8px;
+}
+
 .card strong{
-display:block;
-font-size:21px;
-margin-top:6px;
-}
-.entrada{color:#16803c}
-.saida{color:#c62828}
-
-.form{
-background:white;
-padding:18px;
-border-radius:18px;
-box-shadow:0 3px 10px #0001;
-margin-bottom:18px;
-}
-.form h3{margin-top:0}
-
-input,select,button{
-width:100%;
-padding:13px;
-border-radius:10px;
-border:1px solid #ddd;
-font-size:16px;
-margin-bottom:10px;
+    font-size:21px;
 }
 
-button{
-background:#16a34a;
-color:white;
-border:0;
-font-weight:bold;
-cursor:pointer;
+.verde{
+    color:#55e65b;
 }
 
-button:hover{background:#15803d}
-
-.lancamento{
-background:white;
-padding:15px;
-border-radius:14px;
-margin-bottom:10px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-box-shadow:0 2px 7px #0001;
+.vermelho{
+    color:#ff5555;
 }
 
-.lancamento strong{display:block}
-.lancamento small{color:#777}
+.azul{
+    color:#55aaff;
+}
 
-.valor{font-weight:bold}
+.titulo{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:20px 0 12px;
+}
+
+.titulo h2{
+    margin:0;
+    font-size:21px;
+}
+
+.btn{
+    background:#43b649;
+    color:white;
+    border:0;
+    padding:11px 15px;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+.conta{
+    background:#202020;
+    border-radius:14px;
+    margin-bottom:10px;
+    padding:14px;
+    border-left:5px solid #777;
+}
+
+.conta.paga{
+    border-left-color:#43b649;
+}
+
+.conta.aberta{
+    border-left-color:#ff4444;
+}
+
+.linha{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+}
+
+.descricao{
+    font-size:17px;
+    font-weight:bold;
+}
+
+.vencimento{
+    color:#aaa;
+    font-size:13px;
+    margin-top:6px;
+}
+
+.valor{
+    font-size:19px;
+    color:#55e65b;
+    font-weight:bold;
+    white-space:nowrap;
+}
+
+.status{
+    margin-top:12px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.status label{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:#ddd;
+}
+
+.status input{
+    width:22px;
+    height:22px;
+}
+
 .excluir{
-background:#ef4444;
-width:auto;
-padding:8px 11px;
-margin:0 0 0 10px;
+    background:#7d2222;
+    color:white;
+    border:0;
+    padding:8px 12px;
+    border-radius:8px;
 }
 
-.vazio{
-text-align:center;
-color:#777;
-padding:25px;
+.formulario{
+    background:#202020;
+    padding:16px;
+    border-radius:15px;
+    margin-top:15px;
+}
+
+.formulario input{
+    width:100%;
+    padding:13px;
+    margin-bottom:10px;
+    border-radius:9px;
+    border:1px solid #444;
+    background:#111;
+    color:white;
+    font-size:16px;
+}
+
+.formulario button{
+    width:100%;
+    padding:14px;
+    border:0;
+    border-radius:10px;
+    background:#43b649;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+}
+
+.filtro{
+    display:flex;
+    gap:8px;
+    margin-bottom:15px;
+}
+
+.filtro button{
+    flex:1;
+    padding:10px;
+    border:0;
+    border-radius:9px;
+    background:#333;
+    color:white;
+}
+
+.info{
+    background:#202020;
+    padding:15px;
+    border-radius:12px;
+    color:#ccc;
+    line-height:1.5;
+}
+
+@media(max-width:600px){
+    .cards{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .card strong{
+        font-size:17px;
+    }
 }
 </style>
 </head>
@@ -124,214 +265,495 @@ padding:25px;
 <body>
 
 <header>
-<h1>💰 Meu Financeiro</h1>
-<p>Controle simples das suas finanças</p>
+    <h1>💰 Meu Financeiro</h1>
+    <p>Controle financeiro pessoal</p>
 </header>
+
+<div class="menu">
+    <button class="ativo" onclick="abrirAba('inicio',this)">🏠 Início</button>
+    <button onclick="abrirAba('contas',this)">📋 Contas</button>
+    <button onclick="abrirAba('receitas',this)">💰 Receitas</button>
+    <button onclick="abrirAba('despesas',this)">💸 Despesas</button>
+</div>
 
 <div class="container">
 
-<div class="saldo">
-<small>Saldo atual</small>
-<h2 id="saldo">R$ 0,00</h2>
+<!-- INÍCIO -->
+<section id="inicio" class="aba ativa">
+
+    <div class="titulo">
+        <h2>Resumo financeiro</h2>
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <span>Total de contas</span>
+            <strong id="totalContas">R$ 0,00</strong>
+        </div>
+
+        <div class="card">
+            <span>Contas pagas</span>
+            <strong class="verde" id="totalPago">R$ 0,00</strong>
+        </div>
+
+        <div class="card">
+            <span>Contas em aberto</span>
+            <strong class="vermelho" id="totalAberto">R$ 0,00</strong>
+        </div>
+
+        <div class="card">
+            <span>Quantidade de contas</span>
+            <strong class="azul" id="quantidadeContas">0</strong>
+        </div>
+
+    </div>
+
+    <div class="info">
+        <strong>📌 Como usar:</strong><br><br>
+        Entre em <b>Contas</b> para controlar suas contas do mês.<br>
+        Marque a caixa quando uma conta for paga.<br>
+        O aplicativo atualiza automaticamente os valores pagos e em aberto.
+    </div>
+
+</section>
+
+
+<!-- CONTAS -->
+<section id="contas" class="aba">
+
+    <div class="titulo">
+        <h2>📋 Contas do mês</h2>
+        <button class="btn" onclick="mostrarFormulario()">+ Conta</button>
+    </div>
+
+    <div class="filtro">
+        <button onclick="filtrar('todas')">Todas</button>
+        <button onclick="filtrar('abertas')">Não pagas</button>
+        <button onclick="filtrar('pagas')">Pagas</button>
+    </div>
+
+    <div id="listaContas"></div>
+
+    <div id="formulario" class="formulario" style="display:none">
+
+        <h3>➕ Nova conta</h3>
+
+        <input id="novaDescricao"
+               type="text"
+               placeholder="Descrição da conta">
+
+        <input id="novoVencimento"
+               type="text"
+               placeholder="Vencimento - exemplo: 10/08">
+
+        <input id="novoValor"
+               type="number"
+               step="0.01"
+               placeholder="Valor">
+
+        <button onclick="adicionarConta()">Adicionar conta</button>
+
+    </div>
+
+</section>
+
+
+<!-- RECEITAS -->
+<section id="receitas" class="aba">
+
+    <div class="titulo">
+        <h2>💰 Receitas</h2>
+    </div>
+
+    <div class="info">
+        <h3>Controle de receitas</h3>
+        <p>Essa área ficará preparada para adicionarmos seus salários, Uber, rendimentos e outras entradas.</p>
+    </div>
+
+</section>
+
+
+<!-- DESPESAS -->
+<section id="despesas" class="aba">
+
+    <div class="titulo">
+        <h2>💸 Despesas</h2>
+    </div>
+
+    <div class="info">
+        <h3>Controle de despesas</h3>
+        <p>Aqui vamos colocar posteriormente despesas do dia a dia, combustível, alimentação, compras e outras despesas.</p>
+    </div>
+
+</section>
+
 </div>
 
-<div class="cards">
-<div class="card">
-<small>Entradas</small>
-<strong class="entrada" id="entradas">R$ 0,00</strong>
-</div>
-
-<div class="card">
-<small>Despesas</small>
-<strong class="saida" id="despesas">R$ 0,00</strong>
-</div>
-</div>
-
-<div class="form">
-<h3>➕ Novo lançamento</h3>
-
-<input id="descricao" type="text" placeholder="Descrição">
-
-<input id="valor" type="number" step="0.01" placeholder="Valor">
-
-<select id="tipo">
-<option value="entrada">Entrada</option>
-<option value="saida">Despesa</option>
-</select>
-
-<select id="categoria">
-<option>Salário</option>
-<option>Alimentação</option>
-<option>Casa</option>
-<option>Transporte</option>
-<option>Compras</option>
-<option>Lazer</option>
-<option>Contas</option>
-<option>Outros</option>
-</select>
-
-<input id="data" type="date">
-
-<button onclick="adicionar()">Adicionar lançamento</button>
-</div>
-
-<h3>📋 Lançamentos</h3>
-
-<div id="lista"></div>
-
-</div>
 
 <script>
 
-let lancamentos =
-JSON.parse(localStorage.getItem("meuFinanceiro")) || [];
+let contas = JSON.parse(localStorage.getItem("minhasContas")) || [
 
-document.getElementById("data").value =
-new Date().toISOString().split("T")[0];
+    {
+        descricao:"01 Enxoval Cozinha 03/12",
+        vencimento:"03/12",
+        valor:155,
+        paga:false
+    },
+
+    {
+        descricao:"08 Energia",
+        vencimento:"08",
+        valor:160,
+        paga:false
+    },
+
+    {
+        descricao:"10 Cartão Mercado Pago",
+        vencimento:"10",
+        valor:570,
+        paga:false
+    },
+
+    {
+        descricao:"10 Parcela Apartamento",
+        vencimento:"10",
+        valor:300,
+        paga:false
+    },
+
+    {
+        descricao:"10 Pensão Antonella",
+        vencimento:"10",
+        valor:700,
+        paga:false
+    },
+
+    {
+        descricao:"10 Cartão Nubank",
+        vencimento:"10",
+        valor:500,
+        paga:false
+    },
+
+    {
+        descricao:"15 Condomínio",
+        vencimento:"15",
+        valor:666,
+        paga:false
+    },
+
+    {
+        descricao:"20 Celular iPhone 2/21",
+        vencimento:"20",
+        valor:320,
+        paga:false
+    },
+
+    {
+        descricao:"20 Net",
+        vencimento:"20",
+        valor:185,
+        paga:false
+    },
+
+    {
+        descricao:"20 Cartão Porto Seguro",
+        vencimento:"20",
+        valor:400,
+        paga:false
+    },
+
+    {
+        descricao:"20 Cozinha 04/18 (Uber)",
+        vencimento:"20",
+        valor:666,
+        paga:false
+    },
+
+    {
+        descricao:"20 Cozinha ISA 05/12 (Uber)",
+        vencimento:"20",
+        valor:333,
+        paga:false
+    },
+
+    {
+        descricao:"20 Cozinha ISA 05/12 (Uber)",
+        vencimento:"20",
+        valor:333,
+        paga:false
+    },
+
+    {
+        descricao:"20 Moto 5/12 (Uber)",
+        vencimento:"20",
+        valor:570,
+        paga:false
+    }
+
+];
+
+let filtroAtual = "todas";
+
 
 function dinheiro(valor){
-return valor.toLocaleString("pt-BR",{
-style:"currency",
-currency:"BRL"
-});
+
+    return valor.toLocaleString("pt-BR",{
+        style:"currency",
+        currency:"BRL"
+    });
+
 }
+
 
 function salvar(){
-localStorage.setItem(
-"meuFinanceiro",
-JSON.stringify(lancamentos)
-);
-}
 
-function adicionar(){
-
-const descricao =
-document.getElementById("descricao").value.trim();
-
-const valor =
-parseFloat(document.getElementById("valor").value);
-
-const tipo =
-document.getElementById("tipo").value;
-
-const categoria =
-document.getElementById("categoria").value;
-
-const data =
-document.getElementById("data").value;
-
-if(!descricao || !valor || valor<=0){
-alert("Preencha a descrição e o valor.");
-return;
-}
-
-lancamentos.push({
-id:Date.now(),
-descricao,
-valor,
-tipo,
-categoria,
-data
-});
-
-salvar();
-
-document.getElementById("descricao").value="";
-document.getElementById("valor").value="";
-
-mostrar();
-}
-
-function excluir(id){
-
-lancamentos =
-lancamentos.filter(item=>item.id!==id);
-
-salvar();
-mostrar();
-}
-
-function mostrar(){
-
-let entradas=0;
-let despesas=0;
-
-lancamentos.forEach(item=>{
-
-if(item.tipo==="entrada")
-entradas+=item.valor;
-
-else
-despesas+=item.valor;
-
-});
-
-document.getElementById("entradas").textContent =
-dinheiro(entradas);
-
-document.getElementById("despesas").textContent =
-dinheiro(despesas);
-
-document.getElementById("saldo").textContent =
-dinheiro(entradas-despesas);
-
-const lista =
-document.getElementById("lista");
-
-lista.innerHTML="";
-
-if(lancamentos.length===0){
-
-lista.innerHTML =
-'<div class="vazio">Nenhum lançamento cadastrado.</div>';
-
-return;
-}
-
-lancamentos
-.slice()
-.reverse()
-.forEach(item=>{
-
-const div=document.createElement("div");
-
-div.className="lancamento";
-
-const sinal =
-item.tipo==="entrada" ? "+" : "-";
-
-const classe =
-item.tipo==="entrada" ? "entrada" : "saida";
-
-div.innerHTML=`
-
-<div>
-<strong>${item.descricao}</strong>
-<small>
-${item.categoria} • ${item.data}
-</small>
-</div>
-
-<div style="display:flex;align-items:center">
-<span class="valor ${classe}">
-${sinal} ${dinheiro(item.valor)}
-</span>
-
-<button class="excluir"
-onclick="excluir(${item.id})">
-×
-</button>
-</div>
-
-`;
-
-lista.appendChild(div);
-
-});
+    localStorage.setItem(
+        "minhasContas",
+        JSON.stringify(contas)
+    );
 
 }
 
-mostrar();
+
+function atualizarResumo(){
+
+    let total = 0;
+    let pago = 0;
+    let aberto = 0;
+
+    contas.forEach(conta => {
+
+        total += Number(conta.valor);
+
+        if(conta.paga){
+            pago += Number(conta.valor);
+        }else{
+            aberto += Number(conta.valor);
+        }
+
+    });
+
+    document.getElementById("totalContas").textContent = dinheiro(total);
+
+    document.getElementById("totalPago").textContent = dinheiro(pago);
+
+    document.getElementById("totalAberto").textContent = dinheiro(aberto);
+
+    document.getElementById("quantidadeContas").textContent = contas.length;
+
+}
+
+
+function mostrarContas(){
+
+    const lista = document.getElementById("listaContas");
+
+    lista.innerHTML = "";
+
+    let contasFiltradas = contas;
+
+    if(filtroAtual === "pagas"){
+        contasFiltradas = contas.filter(c => c.paga);
+    }
+
+    if(filtroAtual === "abertas"){
+        contasFiltradas = contas.filter(c => !c.paga);
+    }
+
+
+    if(contasFiltradas.length === 0){
+
+        lista.innerHTML = `
+            <div class="info">
+                Nenhuma conta encontrada.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    contasFiltradas.forEach((conta,index) => {
+
+        const div = document.createElement("div");
+
+        div.className = "conta " + (conta.paga ? "paga" : "aberta");
+
+        div.innerHTML = `
+
+            <div class="linha">
+
+                <div>
+                    <div class="descricao">
+                        ${conta.descricao}
+                    </div>
+
+                    <div class="vencimento">
+                        📅 Vencimento: ${conta.vencimento}
+                    </div>
+                </div>
+
+                <div class="valor">
+                    ${dinheiro(Number(conta.valor))}
+                </div>
+
+            </div>
+
+            <div class="status">
+
+                <label>
+                    <input
+                        type="checkbox"
+                        ${conta.paga ? "checked" : ""}
+                        onchange="alterarStatus(${index})"
+                    >
+
+                    ${conta.paga ? "✅ Paga" : "⏳ Não paga"}
+
+                </label>
+
+                <button
+                    class="excluir"
+                    onclick="excluirConta(${index})">
+                    Excluir
+                </button>
+
+            </div>
+        `;
+
+        lista.appendChild(div);
+
+    });
+
+}
+
+
+function alterarStatus(index){
+
+    contas[index].paga = !contas[index].paga;
+
+    salvar();
+
+    atualizarResumo();
+
+    mostrarContas();
+
+}
+
+
+function excluirConta(index){
+
+    if(confirm("Deseja excluir esta conta?")){
+
+        contas.splice(index,1);
+
+        salvar();
+
+        atualizarResumo();
+
+        mostrarContas();
+
+    }
+
+}
+
+
+function mostrarFormulario(){
+
+    const formulario = document.getElementById("formulario");
+
+    formulario.style.display =
+        formulario.style.display === "none"
+        ? "block"
+        : "none";
+
+}
+
+
+function adicionarConta(){
+
+    const descricao =
+        document.getElementById("novaDescricao").value.trim();
+
+    const vencimento =
+        document.getElementById("novoVencimento").value.trim();
+
+    const valor =
+        Number(document.getElementById("novoValor").value);
+
+
+    if(!descricao || !vencimento || !valor){
+
+        alert("Preencha descrição, vencimento e valor.");
+
+        return;
+    }
+
+
+    contas.push({
+
+        descricao:descricao,
+
+        vencimento:vencimento,
+
+        valor:valor,
+
+        paga:false
+
+    });
+
+
+    salvar();
+
+    atualizarResumo();
+
+    mostrarContas();
+
+
+    document.getElementById("novaDescricao").value = "";
+
+    document.getElementById("novoVencimento").value = "";
+
+    document.getElementById("novoValor").value = "";
+
+    document.getElementById("formulario").style.display = "none";
+
+}
+
+
+function filtrar(tipo){
+
+    filtroAtual = tipo;
+
+    mostrarContas();
+
+}
+
+
+function abrirAba(id,botao){
+
+    document.querySelectorAll(".aba").forEach(aba => {
+        aba.classList.remove("ativa");
+    });
+
+    document.getElementById(id).classList.add("ativa");
+
+
+    document.querySelectorAll(".menu button").forEach(btn => {
+        btn.classList.remove("ativo");
+    });
+
+    botao.classList.add("ativo");
+
+}
+
+
+atualizarResumo();
+
+mostrarContas();
 
 </script>
 
