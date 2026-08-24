@@ -3,528 +3,353 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#111111">
 
 <title>Meu Financeiro</title>
 
 <style>
-
 *{
-box-sizing:border-box;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
 body{
-margin:0;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-background:#111;
-color:#fff;
-padding-bottom:90px;
+    font-family:Arial, sans-serif;
+    background:#101010;
+    color:white;
+    padding-bottom:90px;
 }
 
 header{
-background:linear-gradient(135deg,#111,#292929);
-padding:28px 18px 25px;
-text-align:center;
-border-bottom:3px solid #43c94b;
+    background:linear-gradient(135deg,#151515,#292929);
+    padding:28px 18px 24px;
+    text-align:center;
+    border-bottom:3px solid #42d34f;
 }
 
 header h1{
-margin:0;
-font-size:34px;
+    font-size:32px;
+    margin-bottom:8px;
 }
 
 header p{
-margin:6px 0 0;
-font-size:18px;
-color:#aaa;
+    color:#aaa;
+    font-size:18px;
 }
 
 nav{
-display:flex;
-gap:10px;
-overflow-x:auto;
-padding:16px;
-background:#181818;
+    display:flex;
+    gap:10px;
+    padding:18px;
+    overflow-x:auto;
+    background:#171717;
 }
 
 nav button{
-min-width:150px;
-padding:16px;
-border:0;
-border-radius:18px;
-background:#303030;
-color:#fff;
-font-size:17px;
+    min-width:150px;
+    padding:17px 20px;
+    border:0;
+    border-radius:18px;
+    background:#303030;
+    color:white;
+    font-size:18px;
+    font-weight:bold;
 }
 
 nav button.active{
-background:#43bd49;
+    background:#43c74a;
 }
 
-.container{
-max-width:900px;
-margin:auto;
-padding:18px;
+main{
+    padding:22px;
 }
 
 .section{
-display:none;
+    display:none;
 }
 
 .section.active{
-display:block;
+    display:block;
 }
 
-.title{
-font-size:28px;
-font-weight:900;
-margin:10px 0 20px;
+h2{
+    font-size:30px;
+    margin:10px 0 22px;
 }
 
-.grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:14px;
+.cards{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
 }
 
 .card{
-background:#202020;
-border:1px solid #353535;
-border-radius:20px;
-padding:20px;
-margin-bottom:15px;
+    background:#202020;
+    border:1px solid #383838;
+    border-radius:22px;
+    padding:22px;
 }
 
-.kpi small{
-color:#aaa;
-font-size:15px;
+.card span{
+    display:block;
+    color:#aaa;
+    font-size:17px;
+    margin-bottom:10px;
 }
 
-.kpi strong{
-display:block;
-font-size:25px;
-margin-top:8px;
+.card strong{
+    font-size:25px;
 }
 
-.green{color:#45d953;}
-.red{color:#ff5555;}
-.blue{color:#45a8ff;}
-.yellow{color:#ffd43b;}
+.blue{color:#2998ff}
+.green{color:#43df4c}
+.red{color:#ff5555}
+.yellow{color:#ffd12f}
 
-button{
-border:0;
-border-radius:14px;
-padding:14px;
-font-size:16px;
-font-weight:700;
-cursor:pointer;
+.box{
+    background:#202020;
+    border:1px solid #383838;
+    border-radius:22px;
+    padding:22px;
+    margin-top:22px;
 }
 
-.primary{
-background:#43bd49;
-color:white;
-}
-
-.secondary{
-background:#333;
-color:white;
-}
-
-.danger{
-background:#5b2020;
-color:#ff7777;
-}
-
-.form-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-}
-
-label{
-display:block;
-font-size:13px;
-color:#aaa;
-margin-bottom:5px;
+.box h3{
+    font-size:24px;
+    margin-bottom:18px;
 }
 
 input,select{
-width:100%;
-padding:14px;
-border-radius:12px;
-border:1px solid #444;
-background:#151515;
-color:#fff;
-font-size:16px;
+    width:100%;
+    background:#151515;
+    border:1px solid #444;
+    color:white;
+    padding:16px;
+    border-radius:13px;
+    font-size:17px;
+    margin-bottom:13px;
 }
 
-.full{
-grid-column:1/-1;
+button.primary{
+    width:100%;
+    padding:17px;
+    border:0;
+    border-radius:14px;
+    background:#43c74a;
+    color:white;
+    font-size:18px;
+    font-weight:bold;
 }
 
-.row{
-display:flex;
-justify-content:space-between;
-gap:10px;
-align-items:center;
-padding:15px 0;
-border-bottom:1px solid #333;
+button.danger{
+    background:#d93636;
 }
 
-.desc{
-font-weight:800;
-font-size:16px;
+.transaction{
+    background:#242424;
+    border:1px solid #3a3a3a;
+    border-radius:18px;
+    padding:17px;
+    margin-bottom:12px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
 }
 
-.meta{
-color:#999;
-font-size:13px;
-margin-top:5px;
+.transaction-info strong{
+    display:block;
+    font-size:18px;
+    margin-bottom:5px;
 }
 
-.amount{
-font-weight:900;
-white-space:nowrap;
+.transaction-info small{
+    color:#999;
 }
 
-.badge{
-display:inline-block;
-margin-top:5px;
-padding:5px 8px;
-border-radius:10px;
-font-size:11px;
-background:#333;
+.transaction-value{
+    font-weight:bold;
+    white-space:nowrap;
 }
 
 .actions{
-display:flex;
-gap:6px;
-margin-top:10px;
+    display:flex;
+    gap:7px;
+    margin-top:8px;
 }
 
 .actions button{
-padding:8px;
-font-size:13px;
-}
-
-.progress{
-height:14px;
-background:#333;
-border-radius:20px;
-overflow:hidden;
-margin-top:10px;
-}
-
-.progress div{
-height:100%;
-background:#43bd49;
-}
-
-.bar{
-height:25px;
-background:#333;
-border-radius:20px;
-overflow:hidden;
-margin-top:10px;
-}
-
-.bar div{
-height:100%;
-background:#43bd49;
+    border:0;
+    border-radius:9px;
+    padding:8px 10px;
+    color:white;
+    background:#333;
 }
 
 .empty{
-text-align:center;
-color:#777;
-padding:30px 10px;
-}
-
-.modal{
-position:fixed;
-inset:0;
-background:#000c;
-display:none;
-align-items:flex-end;
-z-index:100;
-}
-
-.modal.show{
-display:flex;
-}
-
-.sheet{
-background:#202020;
-width:100%;
-border-radius:25px 25px 0 0;
-padding:20px;
-max-height:94vh;
-overflow:auto;
-}
-
-.sheet h2{
-margin-top:0;
-}
-
-.two{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-}
-
-.close{
-background:#333;
-color:#fff;
-}
-
-canvas{
-width:100%;
-height:250px;
+    text-align:center;
+    color:#888;
+    padding:35px 10px;
 }
 
 .bottom{
-position:fixed;
-bottom:0;
-left:0;
-right:0;
-background:#181818;
-border-top:1px solid #333;
-display:grid;
-grid-template-columns:repeat(4,1fr);
-z-index:50;
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    height:78px;
+    background:#171717;
+    border-top:1px solid #333;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    z-index:10;
 }
 
 .bottom button{
-background:transparent;
-color:#fff;
-border-radius:0;
-font-size:12px;
+    background:none;
+    border:0;
+    color:#aaa;
+    font-size:14px;
+    font-weight:bold;
 }
 
-@media(max-width:600px){
-
-.grid{
-grid-template-columns:1fr 1fr;
+.bottom button.active{
+    color:white;
 }
 
-.form-grid{
-grid-template-columns:1fr;
+.bottom span{
+    display:block;
+    font-size:24px;
+    margin-bottom:4px;
 }
 
-.two{
-grid-template-columns:1fr;
-}
+@media(max-width:500px){
+    .cards{
+        grid-template-columns:1fr 1fr;
+    }
 
-header h1{
-font-size:30px;
-}
+    .card{
+        padding:17px;
+    }
 
-}
+    .card strong{
+        font-size:21px;
+    }
 
+    h2{
+        font-size:27px;
+    }
+}
 </style>
 </head>
 
 <body>
 
 <header>
-
-<h1>💰 Meu Financeiro</h1>
-
-<p>Controle financeiro pessoal</p>
-
+    <h1>💰 Meu Financeiro</h1>
+    <p>Controle financeiro pessoal</p>
 </header>
 
 <nav>
-
-<button class="active" onclick="abrir('inicio',this)">🏠 Início</button>
-
-<button onclick="abrir('contas',this)">📋 Contas</button>
-
-<button onclick="abrir('receitas',this)">💰 Receitas</button>
-
-<button onclick="abrir('despesas',this)">💸 Despesas</button>
-
-<button onclick="abrir('relatorios',this)">📊 Relatórios</button>
-
+    <button class="active" onclick="mostrar('inicio',this)">🏠 Início</button>
+    <button onclick="mostrar('contas',this)">📋 Contas</button>
+    <button onclick="mostrar('lancar',this)">➕ Lançar</button>
+    <button onclick="mostrar('relatorios',this)">📊 Relatórios</button>
 </nav>
 
-
-<div class="container">
-
+<main>
 
 <!-- INÍCIO -->
-
 <section id="inicio" class="section active">
 
-<div class="title">Resumo financeiro</div>
+<h2>Resumo financeiro</h2>
 
-<div class="grid">
+<div class="cards">
 
-<div class="card kpi">
-<small>Saldo</small>
+<div class="card">
+<span>Saldo</span>
 <strong id="saldo" class="blue">R$ 0,00</strong>
 </div>
 
-<div class="card kpi">
-<small>Receitas</small>
+<div class="card">
+<span>Receitas</span>
 <strong id="receitas" class="green">R$ 0,00</strong>
 </div>
 
-<div class="card kpi">
-<small>Despesas</small>
+<div class="card">
+<span>Despesas</span>
 <strong id="despesas" class="red">R$ 0,00</strong>
 </div>
 
-<div class="card kpi">
-<small>Em aberto</small>
+<div class="card">
+<span>Em aberto</span>
 <strong id="aberto" class="yellow">R$ 0,00</strong>
 </div>
 
 </div>
 
-
-<div class="card">
-
-<h2>📊 Movimento financeiro</h2>
-
-<canvas id="grafico"></canvas>
-
+<div class="box">
+<h3>📊 Movimento financeiro</h3>
+<div id="resumoMovimento" class="empty">
+Nenhum lançamento realizado.
 </div>
-
-
-<div class="card">
-
-<h2>🎯 Meta financeira</h2>
-
-<label>Quanto você quer guardar?</label>
-
-<input id="meta" type="number" step="0.01">
-
-<div class="progress">
-
-<div id="metaBarra"></div>
-
-</div>
-
-<p id="metaTexto">R$ 0,00 de R$ 0,00</p>
-
-<button class="primary" onclick="salvarMeta()">
-Salvar meta
-</button>
-
-</div>
-
-
-<div class="card">
-
-<h2>⚡ Ações rápidas</h2>
-
-<div class="two">
-
-<button class="primary" onclick="novoLancamento('Receita')">
-➕ Receita
-</button>
-
-<button class="primary" onclick="novoLancamento('Despesa')">
-➕ Despesa
-</button>
-
-</div>
-
-</div>
-
-
-<div class="card">
-
-<h2>📅 Próximas contas</h2>
-
-<div id="proximas"></div>
-
 </div>
 
 </section>
 
 
 <!-- CONTAS -->
-
 <section id="contas" class="section">
 
-<div class="title">📋 Contas</div>
+<h2>📋 Minhas contas</h2>
 
-<div class="card">
+<div class="box">
+<h3>Contas cadastradas</h3>
+<div id="listaContas"></div>
+</div>
 
-<div class="two">
+</section>
 
-<input
-id="busca"
-placeholder="🔎 Buscar conta"
-oninput="renderizar()"
->
 
-<select id="filtro" onchange="renderizar()">
+<!-- LANÇAR -->
+<section id="lancar" class="section">
 
-<option value="Todos">Todos</option>
+<h2>➕ Novo lançamento</h2>
 
-<option value="Pendente">Pendentes</option>
+<div class="box">
 
-<option value="Pago">Pagas</option>
+<h3>Adicionar lançamento</h3>
 
-<option value="Vencido">Vencidas</option>
-
+<select id="tipo">
+<option value="receita">💰 Receita</option>
+<option value="despesa">💸 Despesa</option>
+<option value="conta">📋 Conta a pagar</option>
 </select>
 
-</div>
+<input id="descricao" type="text" placeholder="Descrição">
 
-</div>
+<input id="valor" type="number" step="0.01" placeholder="Valor">
 
-<div class="card">
+<input id="data" type="date">
 
-<div id="lista"></div>
+<select id="categoria">
+<option>Salário</option>
+<option>Alimentação</option>
+<option>Casa</option>
+<option>Transporte</option>
+<option>Cartão</option>
+<option>Energia</option>
+<option>Água</option>
+<option>Internet</option>
+<option>Telefone</option>
+<option>Lazer</option>
+<option>Outros</option>
+</select>
 
-</div>
-
-</section>
-
-
-<!-- RECEITAS -->
-
-<section id="receitas" class="section">
-
-<div class="title">💰 Receitas</div>
-
-<div class="card">
-
-<button class="primary" onclick="novoLancamento('Receita')">
-➕ Nova receita
+<button class="primary" onclick="adicionar()">
+Adicionar lançamento
 </button>
-
-</div>
-
-<div class="card">
-
-<div id="listaReceitas"></div>
-
-</div>
-
-</section>
-
-
-<!-- DESPESAS -->
-
-<section id="despesas" class="section">
-
-<div class="title">💸 Despesas</div>
-
-<div class="card">
-
-<button class="primary" onclick="novoLancamento('Despesa')">
-➕ Nova despesa
-</button>
-
-</div>
-
-<div class="card">
-
-<div id="listaDespesas"></div>
 
 </div>
 
@@ -532,265 +357,71 @@ oninput="renderizar()"
 
 
 <!-- RELATÓRIOS -->
-
 <section id="relatorios" class="section">
 
-<div class="title">📊 Relatórios</div>
+<h2>📊 Relatórios</h2>
 
-<div class="card">
+<div class="box">
 
-<h2>Resumo</h2>
+<h3>Resumo</h3>
 
-<p>
-Total de lançamentos:
-<strong id="quantidade">0</strong>
+<p style="margin-bottom:12px">
+Receitas:
+<strong id="relReceitas" class="green">R$ 0,00</strong>
 </p>
 
-<p>
-Contas pagas:
-<strong id="pagas">0</strong>
+<p style="margin-bottom:12px">
+Despesas:
+<strong id="relDespesas" class="red">R$ 0,00</strong>
 </p>
 
-<p>
+<p style="margin-bottom:12px">
 Contas em aberto:
-<strong id="pendentes">0</strong>
+<strong id="relAberto" class="yellow">R$ 0,00</strong>
+</p>
+
+<p>
+Saldo:
+<strong id="relSaldo" class="blue">R$ 0,00</strong>
 </p>
 
 </div>
 
+<div class="box">
 
-<div class="card">
+<h3>💡 Situação financeira</h3>
 
-<h2>💳 Gastos por cartão</h2>
-
-<div id="cartoes"></div>
-
+<div id="situacao" class="empty">
+Adicione lançamentos para visualizar.
 </div>
-
-
-<div class="card">
-
-<h2>🔢 Parcelas</h2>
-
-<div id="parcelas"></div>
-
-</div>
-
-
-<div class="card">
-
-<h2>💾 Backup</h2>
-
-<p style="color:#aaa">
-Salve seus dados antes de trocar de celular.
-</p>
-
-<div class="two">
-
-<button class="primary" onclick="exportar()">
-📥 Exportar
-</button>
-
-<button class="secondary" onclick="document.getElementById('arquivo').click()">
-📤 Importar
-</button>
-
-</div>
-
-<input
-id="arquivo"
-type="file"
-accept=".json"
-style="display:none"
-onchange="importar(event)"
->
-
-</div>
-
-
-<div class="card">
-
-<button class="danger" onclick="limparTudo()">
-⚠️ Apagar todos os lançamentos
-</button>
 
 </div>
 
 </section>
 
-</div>
-
-
-<!-- MODAL -->
-
-<div id="modal" class="modal">
-
-<div class="sheet">
-
-<h2 id="tituloModal">➕ Novo lançamento</h2>
-
-<div class="form-grid">
-
-<div class="full">
-
-<label>Descrição</label>
-
-<input id="descricao" placeholder="Ex.: Mercado">
-
-</div>
-
-
-<div>
-
-<label>Tipo</label>
-
-<select id="tipo">
-
-<option>Despesa</option>
-<option>Receita</option>
-
-</select>
-
-</div>
-
-
-<div>
-
-<label>Categoria</label>
-
-<select id="categoria">
-
-<option>Casa</option>
-<option>Contas</option>
-<option>Cartão</option>
-<option>Moradia</option>
-<option>Família</option>
-<option>Telefone</option>
-<option>Internet</option>
-<option>Transporte</option>
-<option>Alimentação</option>
-<option>Saúde</option>
-<option>Lazer</option>
-<option>Compras</option>
-<option>Assinaturas</option>
-<option>Salário</option>
-<option>Outros</option>
-
-</select>
-
-</div>
-
-
-<div>
-
-<label>Valor</label>
-
-<input
-id="valor"
-type="number"
-step="0.01"
-inputmode="decimal"
-placeholder="0,00"
->
-
-</div>
-
-
-<div>
-
-<label>Status</label>
-
-<select id="status">
-
-<option>Pendente</option>
-<option>Pago</option>
-<option>Vencido</option>
-
-</select>
-
-</div>
-
-
-<div>
-
-<label>Vencimento</label>
-
-<input id="vencimento" type="date">
-
-</div>
-
-
-<div>
-
-<label>Cartão</label>
-
-<input
-id="cartao"
-placeholder="Ex.: Nubank"
->
-
-</div>
-
-
-<div>
-
-<label>Parcela</label>
-
-<input
-id="parcela"
-placeholder="Ex.: 5/12"
->
-
-</div>
-
-
-<div class="full">
-
-<label>Observação</label>
-
-<input
-id="observacao"
-placeholder="Opcional"
->
-
-</div>
-
-</div>
-
-
-<div class="two" style="margin-top:18px">
-
-<button class="close" onclick="fecharModal()">
-Cancelar
-</button>
-
-<button class="primary" onclick="salvarLancamento()">
-Salvar
-</button>
-
-</div>
-
-</div>
-
-</div>
+</main>
 
 
 <div class="bottom">
 
-<button onclick="abrir('inicio')">
-🏠<br>Início
+<button class="active" onclick="mostrar('inicio',this)">
+<span>🏠</span>
+Início
 </button>
 
-<button onclick="novoLancamento()">
-➕<br>Lançar
+<button onclick="mostrar('lancar',this)">
+<span>➕</span>
+Lançar
 </button>
 
-<button onclick="abrir('contas')">
-📋<br>Contas
+<button onclick="mostrar('contas',this)">
+<span>📋</span>
+Contas
 </button>
 
-<button onclick="abrir('relatorios')">
-📊<br>Relatórios
+<button onclick="mostrar('relatorios',this)">
+<span>📊</span>
+Relatórios
 </button>
 
 </div>
@@ -798,58 +429,300 @@ Salvar
 
 <script>
 
+let dados = JSON.parse(localStorage.getItem("meuFinanceiro")) || [];
 
-let lancamentos =
-JSON.parse(localStorage.getItem("meuFinanceiro")) || [];
+function dinheiro(valor){
 
-
-let meta =
-Number(localStorage.getItem("meuFinanceiroMeta")) || 0;
-
-
-let editando = null;
-
-
-const dinheiro = valor => {
-
-return Number(valor || 0).toLocaleString(
-"pt-BR",
-{
+return Number(valor).toLocaleString("pt-BR",{
 style:"currency",
 currency:"BRL"
-}
-);
+});
 
-};
+}
 
 
 function salvar(){
 
 localStorage.setItem(
 "meuFinanceiro",
-JSON.stringify(lancamentos)
+JSON.stringify(dados)
 );
+
+atualizar();
 
 }
 
 
-function abrir(id,botao){
+function adicionar(){
+
+let tipo=document.getElementById("tipo").value;
+
+let descricao=document.getElementById("descricao").value.trim();
+
+let valor=parseFloat(
+document.getElementById("valor").value
+);
+
+let data=document.getElementById("data").value;
+
+let categoria=document.getElementById("categoria").value;
+
+if(!descricao || !valor){
+
+alert("Preencha a descrição e o valor.");
+
+return;
+
+}
+
+dados.push({
+
+id:Date.now(),
+
+tipo:tipo,
+
+descricao:descricao,
+
+valor:valor,
+
+data:data,
+
+categoria:categoria,
+
+pago: tipo !== "conta"
+
+});
+
+salvar();
+
+document.getElementById("descricao").value="";
+
+document.getElementById("valor").value="";
+
+alert("Lançamento adicionado com sucesso!");
+
+mostrarPorNome("contas");
+
+}
+
+
+function excluir(id){
+
+if(confirm("Deseja excluir este lançamento?")){
+
+dados=dados.filter(item=>item.id!==id);
+
+salvar();
+
+}
+
+}
+
+
+function pagar(id){
+
+let item=dados.find(x=>x.id===id);
+
+if(item){
+
+item.pago=true;
+
+salvar();
+
+}
+
+}
+
+
+function atualizar(){
+
+let receitas=0;
+
+let despesas=0;
+
+let aberto=0;
+
+dados.forEach(item=>{
+
+if(item.tipo==="receita"){
+
+receitas+=item.valor;
+
+}
+
+if(item.tipo==="despesa"){
+
+despesas+=item.valor;
+
+}
+
+if(item.tipo==="conta" && !item.pago){
+
+aberto+=item.valor;
+
+}
+
+});
+
+
+let saldo=receitas-despesas;
+
+document.getElementById("saldo").textContent=dinheiro(saldo);
+
+document.getElementById("receitas").textContent=dinheiro(receitas);
+
+document.getElementById("despesas").textContent=dinheiro(despesas);
+
+document.getElementById("aberto").textContent=dinheiro(aberto);
+
+document.getElementById("relReceitas").textContent=dinheiro(receitas);
+
+document.getElementById("relDespesas").textContent=dinheiro(despesas);
+
+document.getElementById("relAberto").textContent=dinheiro(aberto);
+
+document.getElementById("relSaldo").textContent=dinheiro(saldo);
+
+
+if(dados.length===0){
+
+document.getElementById("resumoMovimento").innerHTML=
+"Nenhum lançamento realizado.";
+
+}else{
+
+document.getElementById("resumoMovimento").innerHTML=
+"<strong>"+dados.length+
+"</strong> lançamento(s) registrado(s).";
+
+}
+
+
+let situacao=document.getElementById("situacao");
+
+if(saldo>0){
+
+situacao.innerHTML=
+"🟢 Sua situação financeira está positiva.";
+
+}else if(saldo<0){
+
+situacao.innerHTML=
+"🔴 Atenção: suas despesas estão maiores que suas receitas.";
+
+}else{
+
+situacao.innerHTML=
+"🟡 Seu saldo está zerado.";
+
+}
+
+
+mostrarContas();
+
+}
+
+
+function mostrarContas(){
+
+let lista=document.getElementById("listaContas");
+
+let contas=dados.filter(
+item=>item.tipo==="conta"
+);
+
+
+if(contas.length===0){
+
+lista.innerHTML=
+'<div class="empty">Nenhuma conta cadastrada.</div>';
+
+return;
+
+}
+
+
+lista.innerHTML="";
+
+contas.forEach(item=>{
+
+let div=document.createElement("div");
+
+div.className="transaction";
+
+div.innerHTML=`
+
+<div class="transaction-info">
+
+<strong>${item.descricao}</strong>
+
+<small>
+${item.categoria}
+${item.data ? " • "+formatarData(item.data):""}
+</small>
+
+<div class="actions">
+
+${!item.pago ?
+`<button onclick="pagar(${item.id})">
+☑️ Pagar
+</button>` :
+`<button>✅ Paga</button>`
+}
+
+<button onclick="excluir(${item.id})">
+🗑️ Excluir
+</button>
+
+</div>
+
+</div>
+
+<div class="transaction-value ${item.pago?'green':'yellow'}">
+
+${dinheiro(item.valor)}
+
+</div>
+
+`;
+
+lista.appendChild(div);
+
+});
+
+}
+
+
+function formatarData(data){
+
+if(!data)return "";
+
+let partes=data.split("-");
+
+return partes[2]+"/"+partes[1]+"/"+partes[0];
+
+}
+
+
+function mostrar(nome,botao){
 
 document.querySelectorAll(".section")
-.forEach(x=>x.classList.remove("active"));
+.forEach(sec=>{
+sec.classList.remove("active");
+});
 
-document.getElementById(id)
+document.getElementById(nome)
 .classList.add("active");
 
 
-document.querySelectorAll("nav button")
-.forEach(x=>x.classList.remove("active"));
+document.querySelectorAll("nav button, .bottom button")
+.forEach(btn=>{
+btn.classList.remove("active");
+});
 
-if(botao)
+if(botao){
 botao.classList.add("active");
-
-
-renderizar();
+}
 
 window.scrollTo({
 top:0,
@@ -859,819 +732,25 @@ behavior:"smooth"
 }
 
 
-function novoLancamento(tipo){
-
-editando=null;
-
-document.getElementById("tituloModal")
-.innerText="➕ Novo lançamento";
-
-document.getElementById("tipo").value =
-tipo || "Despesa";
-
-document.getElementById("descricao").value="";
-document.getElementById("valor").value="";
-document.getElementById("status").value="Pendente";
-document.getElementById("cartao").value="";
-document.getElementById("parcela").value="";
-document.getElementById("observacao").value="";
-
-document.getElementById("vencimento").value =
-new Date().toISOString().slice(0,10);
-
-document.getElementById("modal")
-.classList.add("show");
-
-}
-
-
-function fecharModal(){
-
-document.getElementById("modal")
-.classList.remove("show");
-
-}
-
-
-function salvarLancamento(){
-
-const descricao =
-document.getElementById("descricao").value.trim();
-
-const valor =
-Number(document.getElementById("valor").value);
-
-if(!descricao){
-
-alert("Digite uma descrição.");
-
-return;
-
-}
-
-if(!valor || valor<=0){
-
-alert("Digite um valor válido.");
-
-return;
-
-}
-
-
-const item={
-
-descricao,
-
-tipo:document.getElementById("tipo").value,
-
-categoria:document.getElementById("categoria").value,
-
-valor,
-
-status:document.getElementById("status").value,
-
-vencimento:document.getElementById("vencimento").value,
-
-cartao:document.getElementById("cartao").value.trim(),
-
-parcela:document.getElementById("parcela").value.trim(),
-
-observacao:document.getElementById("observacao").value.trim(),
-
-criado:new Date().toISOString()
-
-};
-
-
-if(editando!==null){
-
-lancamentos[editando]=item;
-
-}else{
-
-lancamentos.push(item);
-
-}
-
-
-salvar();
-
-fecharModal();
-
-renderizar();
-
-}
-
-
-function editar(index){
-
-const x=lancamentos[index];
-
-editando=index;
-
-document.getElementById("tituloModal")
-.innerText="✏️ Editar lançamento";
-
-document.getElementById("descricao").value=x.descricao;
-
-document.getElementById("tipo").value=x.tipo;
-
-document.getElementById("categoria").value=x.categoria;
-
-document.getElementById("valor").value=x.valor;
-
-document.getElementById("status").value=x.status;
-
-document.getElementById("vencimento").value=x.vencimento;
-
-document.getElementById("cartao").value=x.cartao || "";
-
-document.getElementById("parcela").value=x.parcela || "";
-
-document.getElementById("observacao").value=x.observacao || "";
-
-document.getElementById("modal")
-.classList.add("show");
-
-}
-
-
-function excluir(index){
-
-if(!confirm("Excluir este lançamento?"))
-return;
-
-lancamentos.splice(index,1);
-
-salvar();
-
-renderizar();
-
-}
-
-
-function marcarPago(index){
-
-lancamentos[index].status="Pago";
-
-salvar();
-
-renderizar();
-
-}
-
-
-function totais(){
-
-let receitas=0;
-
-let despesas=0;
-
-let aberto=0;
-
-let pagas=0;
-
-lancamentos.forEach(x=>{
-
-const valor=Number(x.valor);
-
-if(x.tipo==="Receita"){
-
-receitas+=valor;
-
-}else{
-
-despesas+=valor;
-
-if(x.status!=="Pago")
-aberto+=valor;
-
-if(x.status==="Pago")
-pagas++;
-
-}
-
+function mostrarPorNome(nome){
+
+document.querySelectorAll(".section")
+.forEach(sec=>{
+sec.classList.remove("active");
 });
 
-return{
-
-receitas,
-
-despesas,
-
-aberto,
-
-saldo:receitas-despesas,
-
-pagas
-
-};
-
-}
-
-
-function renderizar(){
-
-const t=totais();
-
-
-document.getElementById("saldo")
-.innerText=dinheiro(t.saldo);
-
-document.getElementById("receitas")
-.innerText=dinheiro(t.receitas);
-
-document.getElementById("despesas")
-.innerText=dinheiro(t.despesas);
-
-document.getElementById("aberto")
-.innerText=dinheiro(t.aberto);
-
-
-document.getElementById("quantidade")
-.innerText=lancamentos.length;
-
-document.getElementById("pagas")
-.innerText=t.pagas;
-
-document.getElementById("pendentes")
-.innerText=
-lancamentos.filter(x=>
-x.tipo==="Despesa" &&
-x.status!=="Pago"
-).length;
-
-
-renderLista();
-
-renderReceitas();
-
-renderDespesas();
-
-renderProximas();
-
-renderCartoes();
-
-renderParcelas();
-
-renderMeta();
-
-desenharGrafico();
-
-}
-
-
-function renderLista(){
-
-const busca=
-(document.getElementById("busca")?.value || "")
-.toLowerCase();
-
-const filtro=
-document.getElementById("filtro")?.value || "Todos";
-
-
-const lista=lancamentos
-.map((x,i)=>({x,i}))
-.filter(({x})=>{
-
-const texto=
-(x.descricao+" "+x.categoria+" "+(x.cartao||""))
-.toLowerCase();
-
-const buscaOk=
-!busca || texto.includes(busca);
-
-const filtroOk=
-filtro==="Todos" ||
-x.status===filtro;
-
-return buscaOk && filtroOk;
-
-})
-.reverse();
-
-
-document.getElementById("lista").innerHTML=
-lista.length
-? lista.map(({x,i})=>linha(x,i)).join("")
-: '<div class="empty">Nenhuma conta encontrada.</div>';
-
-}
-
-
-function linha(x,i){
-
-const cor=
-x.tipo==="Receita"
-?"green"
-:"red";
-
-
-return `
-
-<div class="row">
-
-<div>
-
-<div class="desc">
-${escapeHtml(x.descricao)}
-</div>
-
-<div class="meta">
-${escapeHtml(x.categoria)}
-${x.vencimento ? " • "+formatarData(x.vencimento):""}
-${x.cartao ? " • 💳 "+escapeHtml(x.cartao):""}
-${x.parcela ? " • Parcela "+escapeHtml(x.parcela):""}
-</div>
-
-<span class="badge">
-${x.status}
-</span>
-
-</div>
-
-
-<div style="text-align:right">
-
-<div class="amount ${cor}">
-${x.tipo==="Receita"?"+":"-"}
-${dinheiro(x.valor)}
-</div>
-
-<div class="actions">
-
-${x.tipo==="Despesa" && x.status!=="Pago"
-? `<button class="primary" onclick="marcarPago(${i})">✓</button>`
-:""}
-
-<button class="secondary" onclick="editar(${i})">
-✏️
-</button>
-
-<button class="danger" onclick="excluir(${i})">
-🗑️
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-`;
-
-}
-
-
-function renderReceitas(){
-
-const lista=lancamentos
-.map((x,i)=>({x,i}))
-.filter(y=>y.x.tipo==="Receita")
-.reverse();
-
-
-document.getElementById("listaReceitas").innerHTML=
-lista.length
-?lista.map(({x,i})=>linha(x,i)).join("")
-:'<div class="empty">Nenhuma receita cadastrada.</div>';
-
-}
-
-
-function renderDespesas(){
-
-const lista=lancamentos
-.map((x,i)=>({x,i}))
-.filter(y=>y.x.tipo==="Despesa")
-.reverse();
-
-
-document.getElementById("listaDespesas").innerHTML=
-lista.length
-?lista.map(({x,i})=>linha(x,i)).join("")
-:'<div class="empty">Nenhuma despesa cadastrada.</div>';
-
-}
-
-
-function renderProximas(){
-
-const lista=lancamentos
-.filter(x=>
-x.tipo==="Despesa" &&
-x.status!=="Pago"
-)
-.sort((a,b)=>
-(a.vencimento||"").localeCompare(b.vencimento||"")
-)
-.slice(0,5);
-
-
-document.getElementById("proximas").innerHTML=
-lista.length
-?lista.map(x=>`
-
-<div class="row">
-
-<div>
-
-<div class="desc">
-${escapeHtml(x.descricao)}
-</div>
-
-<div class="meta">
-Vence ${formatarData(x.vencimento)}
-</div>
-
-</div>
-
-<div class="amount red">
-${dinheiro(x.valor)}
-</div>
-
-</div>
-
-`).join("")
-:'<div class="empty">Nenhuma conta em aberto.</div>';
-
-}
-
-
-function renderCartoes(){
-
-const mapa={};
-
-lancamentos
-.filter(x=>x.cartao)
-.forEach(x=>{
-
-mapa[x.cartao]=
-(mapa[x.cartao]||0)+Number(x.valor);
-
-});
-
-
-const dados=Object.entries(mapa)
-.sort((a,b)=>b[1]-a[1]);
-
-
-document.getElementById("cartoes").innerHTML=
-dados.length
-?dados.map(x=>`
-
-<div class="row">
-
-<div>
-<div class="desc">💳 ${escapeHtml(x[0])}</div>
-<div class="meta">Total lançado</div>
-</div>
-
-<div class="amount red">
-${dinheiro(x[1])}
-</div>
-
-</div>
-
-`).join("")
-:'<div class="empty">Nenhum cartão cadastrado.</div>';
-
-}
-
-
-function renderParcelas(){
-
-const dados=lancamentos
-.filter(x=>x.parcela);
-
-
-document.getElementById("parcelas").innerHTML=
-dados.length
-?dados.map(x=>{
-
-const m=x.parcela.match(/(\d+)\s*\/\s*(\d+)/);
-
-if(!m)
-return `<p>${escapeHtml(x.descricao)} • ${escapeHtml(x.parcela)}</p>`;
-
-const atual=Number(m[1]);
-
-const total=Number(m[2]);
-
-const porcentagem=
-Math.min(atual/total*100,100);
-
-
-return `
-
-<div style="margin-bottom:18px">
-
-<strong>
-${escapeHtml(x.descricao)}
-</strong>
-
-<div style="display:flex;justify-content:space-between;margin-top:5px">
-
-<span>${atual}/${total}</span>
-
-<span>${porcentagem.toFixed(0)}%</span>
-
-</div>
-
-<div class="bar">
-
-<div style="width:${porcentagem}%"></div>
-
-</div>
-
-</div>
-
-`;
-
-}).join("")
-:'<div class="empty">Nenhuma parcela cadastrada.</div>';
-
-}
-
-
-function salvarMeta(){
-
-meta=
-Number(document.getElementById("meta").value)||0;
-
-localStorage.setItem(
-"meuFinanceiroMeta",
-meta
-);
-
-renderMeta();
-
-}
-
-
-function renderMeta(){
-
-document.getElementById("meta").value=meta;
-
-const t=totais();
-
-const guardado=
-Math.max(0,t.saldo);
-
-const porcentagem=
-meta>0
-?Math.min(guardado/meta*100,100)
-:0;
-
-
-document.getElementById("metaBarra")
-.style.width=porcentagem+"%";
-
-
-document.getElementById("metaTexto")
-.innerText=
-`${dinheiro(guardado)} de ${dinheiro(meta)} • ${porcentagem.toFixed(0)}%`;
-
-}
-
-
-function desenharGrafico(){
-
-const canvas=
-document.getElementById("grafico");
-
-const ctx=
-canvas.getContext("2d");
-
-const largura=
-canvas.clientWidth || 300;
-
-const altura=250;
-
-const escala=
-window.devicePixelRatio||1;
-
-canvas.width=largura*escala;
-
-canvas.height=altura*escala;
-
-ctx.scale(escala,escala);
-
-ctx.clearRect(0,0,largura,altura);
-
-
-const t=totais();
-
-const maior=
-Math.max(t.receitas,t.despesas,1);
-
-
-const barras=[
-
-{
-nome:"Receitas",
-valor:t.receitas,
-cor:"#43d953"
-},
-
-{
-nome:"Despesas",
-valor:t.despesas,
-cor:"#ff5555"
-}
-
-];
-
-
-barras.forEach((b,i)=>{
-
-const x=
-largura/2-100+i*200;
-
-const h=
-(b.valor/maior)*160;
-
-ctx.fillStyle=b.cor;
-
-ctx.fillRect(
-x,
-200-h,
-80,
-h
-);
-
-ctx.fillStyle="#fff";
-
-ctx.textAlign="center";
-
-ctx.font="bold 14px Arial";
-
-ctx.fillText(
-dinheiro(b.valor),
-x+40,
-190-h
-);
-
-ctx.fillText(
-b.nome,
-x+40,
-225
-);
-
+document.getElementById(nome)
+.classList.add("active");
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
 });
 
 }
 
 
-function exportar(){
-
-const dados=JSON.stringify({
-
-lancamentos,
-
-meta
-
-},null,2);
-
-
-const blob=
-new Blob([dados],{
-type:"application/json"
-});
-
-
-const url=
-URL.createObjectURL(blob);
-
-
-const a=
-document.createElement("a");
-
-a.href=url;
-
-a.download=
-"backup-meu-financeiro.json";
-
-a.click();
-
-URL.revokeObjectURL(url);
-
-}
-
-
-function importar(event){
-
-const arquivo=
-event.target.files[0];
-
-if(!arquivo)
-return;
-
-
-const leitor=
-new FileReader();
-
-
-leitor.onload=function(e){
-
-try{
-
-const dados=
-JSON.parse(e.target.result);
-
-
-if(Array.isArray(dados.lancamentos)){
-
-lancamentos=
-dados.lancamentos;
-
-}
-
-
-if(dados.meta!==undefined){
-
-meta=
-Number(dados.meta)||0;
-
-}
-
-
-salvar();
-
-localStorage.setItem(
-"meuFinanceiroMeta",
-meta
-);
-
-renderizar();
-
-alert("Backup importado com sucesso!");
-
-}catch{
-
-alert("Arquivo de backup inválido.");
-
-}
-
-};
-
-
-leitor.readAsText(arquivo);
-
-}
-
-
-function limparTudo(){
-
-if(!confirm(
-"Tem certeza que deseja apagar TODOS os lançamentos?"
-))
-return;
-
-
-lancamentos=[];
-
-salvar();
-
-renderizar();
-
-}
-
-
-function formatarData(data){
-
-if(!data)
-return "Sem data";
-
-const partes=data.split("-");
-
-if(partes.length!==3)
-return data;
-
-return `${partes[2]}/${partes[1]}/${partes[0]}`;
-
-}
-
-
-function escapeHtml(text){
-
-return String(text||"")
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
-
-}
-
-
-renderizar();
-
-window.addEventListener(
-"resize",
-desenharGrafico
-);
+atualizar();
 
 </script>
 
